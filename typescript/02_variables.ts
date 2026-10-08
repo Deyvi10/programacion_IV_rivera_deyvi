@@ -1,26 +1,65 @@
-//constantes
-const PI: number=3.141516;
-const IVA: number=15;
-const SERVICIO_API:string="apiService";
-const ACTIVE: boolean = true;
-console.log("PI: ", PI);
-console.log("IVA: ", IVA);
-console.log("SERVICIO_API: ", SERVICIO_API);
-console.log("ACTIVE: ", ACTIVE);
+// condicionales
 
-//VARIABLES
-//TEXT
-let contador: number=0;
-console.log(contador);
-contador=5;
-console.log(contador);
-contador++;
-console.log(contador);
-contador+=5;
-console.log(contador);
-contador=contador+3;
-console.log(contador);
-let alumno: string="Pedro Perez";
-let caducado: boolean=false;
-console.log(alumno);
-console.log(caducado);
+let nivel: number = 5;
+if (nivel < 5){
+    console.log("El charmander puede evolucionar a Charmeleon");
+}
+
+
+// condicionales dobles o dos caminos
+if (nivel >= 16) {
+    console.log("El charmander puede evolucionar a charizard");
+} else {
+     console.log("El charmander no puede evolucionar a charizard");
+}
+
+
+if (nivel >= 20) {
+    console.log("El charmander puede evolucionar a charizard");
+}else if(nivel >=8) {
+    console.log("El charmander puede evolucionar a charizard");
+} else {
+     console.log("El charmander no puede evolucionar a charizard");
+}
+
+
+
+//condicion anidado
+
+if (nivel >= 20) {
+    console.log("El charmander puede evolucionar a charizard");
+}else {
+        if(nivel >=8) {
+    console.log("El charmander puede evolucionar a charizard");
+} else {
+     console.log("El charmander no puede evolucionar a charizard");
+}
+}
+    
+nivel = 15;
+let poder: number =25 
+//condicional if con operadores logicos
+
+if (nivel >= 8 && nivel > 16 && poder >=20) {
+    console.log("El charmander puede evolucionar a charmeleon");
+}else if(nivel >=16) {
+    console.log("El charmander puede evolucionar a charizard");
+} else {
+     console.log("El charmander no puede evolucionar a charmeleon ni a charizard");
+}
+
+
+nivel = 5;
+poder =56;
+if (nivel >= 8 ||  poder >=20) {
+    console.log("El charmander puede evolucionar a charmeleon");
+}else if(nivel >=16) {
+    console.log("El charmander puede evolucionar a charizard");
+} else {
+     console.log("El charmander no puede evolucionar a charmeleon ni a charizard");
+}
+
+
+/*
+
+*/
