@@ -1,42 +1,21 @@
-// POO - Encapsulamiento aplicado al control de inventario
+// Control de Inventario — Deyvi Rivera
+// Encapsulamiento: proteger el stock de un producto
 
-class Producto {
-    private stock: number = 0;
-    private precioUnitario: number;
+//Encapsulamiento
+class Producto{
+    private stock: number = 100;
 
-    constructor(precioUnitario: number, stockInicial: number = 0) {
-        this.precioUnitario = precioUnitario;
-        this.stock = stockInicial;
-    }
-
-    agregarStock(cantidad: number): void {
+    registrarSalida(cantidad: number): void {
         if (cantidad > 0) {
-            this.stock += cantidad;
+            this.stock = Math.max(0, this.stock - cantidad);
         }
     }
-
-    vender(cantidad: number): void {
-        if (cantidad > 0 && cantidad <= this.stock) {
-            this.stock -= cantidad;
-        }
-    }
-
     consultarStock(): number {
         return this.stock;
     }
-
-    consultarPrecio(): number {
-        return this.precioUnitario;
-    }
-
-    valorTotal(): number {
-        return this.stock * this.precioUnitario;
-    }
 }
-
-const mouse = new Producto(25.50, 30);
-mouse.vender(10);
-console.log("Stock actual:", mouse.consultarStock());
-mouse.vender(5);
-console.log("Stock actual:", mouse.consultarStock());
-console.log("Valor total:", mouse.valorTotal());
+const producto01 = new Producto();
+producto01.registrarSalida(50);
+console.log(producto01.consultarStock());
+producto01.registrarSalida(25);
+console.log(producto01.consultarStock());

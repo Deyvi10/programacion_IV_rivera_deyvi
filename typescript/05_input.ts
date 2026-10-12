@@ -1,24 +1,6 @@
-import { readSync } from "node:fs";
-
-const stdinFd = 0;
-
-function question(texto: string): string {
-    process.stdout.write(texto);
-    let linea = "";
-    const buffer = Buffer.alloc(1);
-    while (true) {
-        const bytes = readSync(stdinFd, buffer, 0, 1, null);
-        if (bytes === 0) break;
-        const caracter = buffer.toString("utf8");
-        if (caracter === "\n") break;
-        linea += caracter;
-    }
-    return linea.replace(/\r$/, "");
-}
-
-const personaje = question("Ingrese personaje (Luke, Vader, Organa, Han Solo, Yoda):");
-const edad = Number(question("Ingrese edad del personaje:"));
-const fuerza = Number(question("Ingrese nivel de fuerza del personaje (0-100):"));
+let personaje: string = "Luke";
+let edad: number = 25;
+let fuerza: number = 85;
 
 if (personaje === "Luke" || personaje === "Vader" || personaje === "Yoda") {
     if (edad >= 18 && fuerza >= 80) {

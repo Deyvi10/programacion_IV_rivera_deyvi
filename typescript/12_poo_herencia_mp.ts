@@ -1,60 +1,56 @@
-// POO - Herencia aplicada al control de inventario
+// Control de Inventario — Deyvi Rivera
+// Herencia de clases para productos y sistemas de bodega
 
 class Producto {
-    agregarStock(cantidad: number): void {
-        console.log(`Stock agregado: ${cantidad} unidades`);
-    }
-
-    mostrarInfo(): void {
-        console.log("Producto genérico");
+    registrarEntrada(): void {
+        console.log("Registro básico de entrada al inventario");
     }
 }
 
-class ProductoElectronico extends Producto {
-    garantia(): void {
-        console.log("Producto electrónico con garantía de 12 meses");
+class ProductoFerreteria extends Producto {
+    precioMayoreo(): void {
+        console.log("El producto de ferretería aplica precio de mayoreo");
     }
 }
 
-class ProductoAlimenticio extends Producto {
-    fechaCaducidad(): void {
-        console.log("Producto alimenticio con fecha de caducidad registrada");
+class ProductoPapeleria extends Producto{
+    descuentoProveedor(): void {
+        console.log("El producto de papelería aplica descuento de proveedor");
+
     }
 }
 
-const laptop = new ProductoElectronico();
-laptop.mostrarInfo();
-laptop.agregarStock(5);
-laptop.garantia();
 
-const pan = new ProductoAlimenticio();
-pan.mostrarInfo();
-pan.agregarStock(20);
-pan.fechaCaducidad();
+const ferreteria01 = new ProductoFerreteria();
+ferreteria01.registrarEntrada();
+ferreteria01.precioMayoreo();
+const papeleria01 = new ProductoPapeleria();
+papeleria01.registrarEntrada();
+papeleria01.descuentoProveedor();
 
-// Ejemplo adicional
-class Articulo {
-    recibirMercancia(): void {
-        console.log("Mercancía recibida en almacén");
+
+
+class SistemaBodega {
+    sincronizar(): void {
+        console.log("La bodega realiza una sincronización básica de pasillos");
     }
 }
 
-class Ropa extends Articulo {
-    verificarTalla(): void {
-        console.log("Verificando disponibilidad por tallas");
+class BodegaFrio extends SistemaBodega {
+    controlTemperatura(): void {
+        console.log("La bodega fría activa el control de temperatura");
     }
 }
 
-class Calzado extends Articulo {
-    verificarNumero(): void {
-        console.log("Verificando disponibilidad por número");
+class BodegaSeca extends SistemaBodega {
+    controlHumedad(): void {
+        console.log("La bodega seca activa el control de humedad");
     }
 }
 
-const camiseta = new Ropa();
-camiseta.recibirMercancia();
-camiseta.verificarTalla();
-
-const zapato = new Calzado();
-zapato.recibirMercancia();
-zapato.verificarNumero();
+const bodegaFrio01 = new BodegaFrio();
+bodegaFrio01.sincronizar();
+bodegaFrio01.controlTemperatura();
+const bodegaSeca02 = new BodegaSeca();
+bodegaSeca02.sincronizar();
+bodegaSeca02.controlHumedad();
