@@ -1,52 +1,61 @@
-// Ejemplo de switch con las evoluciones de Charmander según su nivel
+type Personaje =
+    | "Luke Skywalker"
+    | "Leia Organa"
+    | "Han Solo"
+    | "Darth Vader"
+    | "Yoda"
 
-let nivel: number = 25;
-let poder: number = 56;
-
-switch (true) {
-    case nivel >= 80:
-        console.log("¡Evolucionaste a Charizard!");
-        break;
-    case nivel >= 50:
-        console.log("¡Evolucionaste a Charmeleon!");
-        break;
-    case nivel >= 30:
-        console.log("Tu Charmander está cerca de evolucionar.");
-        break;
-    default:
-        console.log("Tu Charmander aún es muy joven.");
-}
-
-// switch clásico con valores exactos
-
-let personaje: string = "Yoda";
+let personaje: Personaje = "Luke Skywalker";
 
 switch (personaje) {
-    case "Luke":
-    case "Yoda":
-        console.log(`${personaje} domina la Fuerza.`);
+    case "Luke Skywalker":
+        console.log("Luke Skywalker es un Jedi");
         break;
-    case "Vader":
-        console.log(`${personaje} cayó al lado oscuro.`);
+    case "Leia Organa":
+        console.log("Leia Organa es una princesa");             
+        break;
+    case "Han Solo":
+        console.log("Han Solo es un contrabandista");
+        break;
+    case "Darth Vader":
+        console.log("Darth Vader es un Sith");
+        break;
+    case "Yoda":
+        console.log("Yoda es un maestro Jedi");
         break;
     default:
-        console.log(`${personaje} tiene un camino por recorrer.`);
+        console.log("Personaje desconocido");
 }
 
-// switch numérico clásico
 
-let nivelBatalla: number = 3;
+type Jedis = "Luke" | "Vader" | "Yoda";
 
-switch (nivelBatalla) {
-    case 1:
-        console.log("Nivel de batalla: novato");
+let jedi: Jedis = "Luke";
+let nivelFuerza: number = 100;
+let tieneSable : boolean = true;
+
+switch (jedi) { 
+    case "Luke":
+        if (nivelFuerza >= 80 && tieneSable) {
+            console.log("Luke es un Jedi poderoso");
+        } else {
+            console.log("Luke no es un Jedi poderoso");
+        }
         break;
-    case 2:
-        console.log("Nivel de batalla: intermedio");
+    case "Vader":
+        if (nivelFuerza >= 90 && tieneSable) {
+            console.log("Vader es un Sith temible");
+        } else {
+            console.log("Vader no es un Sith temible");
+        }
         break;
-    case 3:
-        console.log("Nivel de batalla: avanzado");
+    case "Yoda":
+        if (nivelFuerza >= 95 && tieneSable) {
+            console.log("Yoda es un maestro Jedi legendario");
+        } else {
+            console.log("Yoda no es un maestro Jedi legendario");
+        }
         break;
     default:
-        console.log("Nivel de batalla: desconocido");
+        console.log("Jedi desconocido");
 }
