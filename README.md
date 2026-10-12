@@ -1,18 +1,58 @@
+# Programación IV
 
-# Programacion IV
+**Autor:** _Deyvi Rivera
+**Materia:** Programación IV
+**Periodo:** 2026
 
-**Universidad:** UTE
-**Autor:** Deyvi Rivera
+---
 
-## Objetivo Principal
-El objetivo principal de esta materia es el **desarrollo móvil**, enfocado en el diseño, arquitectura y construcción de aplicaciones eficientes para dispositivos móviles.
+## 📌 Descripción
 
-## Tecnologías y Conceptos Aplicados
+Repositorio de la materia **Programación IV**, donde se almacenan los proyectos, prácticas y ejercicios desarrollados durante el curso.
 
-Para lograr un desarrollo móvil completo, desde la interfaz de usuario hasta la lógica del servidor y la persistencia de datos, se aplican los siguientes conceptos y tecnologías:
+## 🎯 Objetivo principal
 
-*   **Flutter:** Framework principal para el desarrollo móvil multiplataforma. Permite construir interfaces nativas, fluidas y dinámicas desde un único código base.
-*   **React:** Biblioteca para el desarrollo ágil de interfaces de usuario (UI) y componentes interactivos, fundamental para la parte visual del ecosistema.
-*   **NestJS y Node.js (TypeScript/JavaScript):** Entornos y frameworks de backend para la construcción de APIs RESTful y microservicios escalables que conectan y alimentan las aplicaciones móviles.
-*   **Django y Python:** Tecnologías robustas para estructurar la lógica de negocio del lado del servidor, integrar módulos de gestión (como ERPs o inventarios) y exponer endpoints seguros.
-*   **PostgreSQL, MySQL y MongoDB:** Sistemas de gestión de bases de datos relacionales y NoSQL para el almacenamiento persistente, ejecución de consultas estructuradas y manejo de la información generada por la aplicación móvil.
+Aprender y aplicar los fundamentos del **desarrollo de aplicaciones móviles**, construyendo apps multiplataforma con Flutter, gestionando el código con Git y trabajando en un entorno Linux, siguiendo buenas prácticas de organización y seguridad del proyecto.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+| Tecnología | Mini concepto |
+|---|---|
+| **Flutter** | Framework de Google para crear aplicaciones móviles, web y de escritorio desde un solo código base. |
+| **Dart** | Lenguaje de programación orientado a objetos con el que se escriben las aplicaciones en Flutter. |
+| **Android** | Sistema operativo móvil de Google; plataforma principal donde se compilan y prueban las apps. |
+| **Android Studio / SDK** | Herramientas oficiales para compilar apps Android, administrar emuladores y firmar aplicaciones. |
+| **Git** | Sistema de control de versiones que registra el historial de cambios del código. |
+| **GitHub** | Plataforma en la nube para alojar repositorios Git y colaborar en proyectos. |
+| **.gitignore** | Archivo que indica a Git qué carpetas o archivos no debe subir (ej. `build/`, `node_modules/`, `.env`). |
+| **Node.js / npm** | Entorno para ejecutar JavaScript fuera del navegador; npm instala dependencias en `node_modules/`. |
+| **Variables de entorno (.env)** | Archivo que guarda configuraciones y credenciales sensibles fuera del código fuente. |
+| **Keystore (.jks / .keystore)** | Archivo con las llaves privadas usadas para firmar apps Android antes de publicarlas. |
+| **Ubuntu (Linux)** | Sistema operativo de código abierto usado como entorno de desarrollo; permite gestionar usuarios con permisos `sudo`. |
+| **Visual Studio Code** | Editor de código ligero con extensiones para Flutter, Dart y Git. |
+
+---
+
+## 📁 Estructura del repositorio
+
+```
+programacion-iv/
+├── proyectos/
+│   ├── app1/
+│   └── app2/
+├── practicas/
+├── .gitignore
+└── README.md
+```
+
+---
+
+
+## 🔒 Buenas prácticas
+
+- No subir archivos `.env`, `.jks` ni `.keystore` al repositorio.
+- Ignorar carpetas generadas como `build/` y `node_modules/`.
+- Hacer commits pequeños y con mensajes descriptivos.
+-
