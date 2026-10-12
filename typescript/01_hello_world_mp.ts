@@ -1,2 +1,3 @@
-const saludo: string = "¡Hola! Bienvenido al Sistema de Control de Inventario";
-console.log(saludo);
+// Control de Inventario — Deyvi Rivera
+// Primer programa: saludo del sistema de inventario
+console.log("Sistema de Control de Inventario");
