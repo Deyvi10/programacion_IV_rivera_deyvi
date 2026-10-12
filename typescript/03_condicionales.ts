@@ -69,4 +69,9 @@ let suspendido = false;
 if(medallas >= 8 && edad >=12 && suspendido == false){  
     console. log("El entrenador puede participar en el torneo liga Pokemon");
 } else {
-    if(nivel >= 40 && vida >100 && )
+    if (nivel >= 40 && poder > 100 && !suspendido) {
+        console.log("El entrenador aún no reúne los requisitos, pero su Pokémon es fuerte.");
+    } else {
+        console.log("El entrenador y su Pokémon no cumplen los requisitos.");
+    }
+}

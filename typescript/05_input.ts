@@ -1,10 +1,24 @@
-05
+import { readSync } from "node:fs";
 
+const stdinFd = 0;
 
+function question(texto: string): string {
+    process.stdout.write(texto);
+    let linea = "";
+    const buffer = Buffer.alloc(1);
+    while (true) {
+        const bytes = readSync(stdinFd, buffer, 0, 1, null);
+        if (bytes === 0) break;
+        const caracter = buffer.toString("utf8");
+        if (caracter === "\n") break;
+        linea += caracter;
+    }
+    return linea.replace(/\r$/, "");
+}
 
-let personaje = prompt("Ingrese personaje (Luke, Vader, Organa, Han Solo, Yoda):");
-let edad = Number(prompt("Ingrese edad del personaje:"));
-let fuerza = Number(prompt("Ingrese nivel de fuerza del personaje (0-100):"));
+const personaje = question("Ingrese personaje (Luke, Vader, Organa, Han Solo, Yoda):");
+const edad = Number(question("Ingrese edad del personaje:"));
+const fuerza = Number(question("Ingrese nivel de fuerza del personaje (0-100):"));
 
 if (personaje === "Luke" || personaje === "Vader" || personaje === "Yoda") {
     if (edad >= 18 && fuerza >= 80) {

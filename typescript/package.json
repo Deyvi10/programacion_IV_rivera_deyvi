@@ -4,14 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typecheck": "tsc --noEmit",
+    "hello": "tsx 01_hello_world.ts",
+    "variables": "tsx 02_variables.ts",
+    "condicionales": "tsx 03_condicionales.ts",
+    "switch": "tsx 04_switch.ts",
+    "input": "tsx 05_input.ts",
+    "cicloFor": "tsx 06_ciclo_for.ts",
+    "liga": "tsx liga.ts",
+    "hello_mp": "tsx 01_hello_world_mp.ts",
+    "variables_mp": "tsx 02_variables_mp.ts",
+    "condicionales_mp": "tsx 03_condicionales_mp.ts",
+    "switch_mp": "tsx 04_switch_mp.ts",
+    "input_mp": "tsx 05_input_mp.ts",
+    "cicloFor_mp": "tsx 06_ciclo_for_mp.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5"
   }
 }
