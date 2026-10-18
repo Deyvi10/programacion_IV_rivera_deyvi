@@ -1,50 +1,40 @@
-// POO - Clase aplicada al control de inventario
+// Control de Inventario — Deyvi Rivera
+// Clases, constructor y métodos para gestionar el stock de un producto
 
 class Producto {
-    public codigo: string;
     public nombre: string;
     public stock: number;
-    public precioUnitario: number;
+    public capacidadMaxima: number;
 
     constructor(
-        codigo: string,
         nombre: string,
         stock: number,
-        precioUnitario: number,
-    ) {
-        this.codigo = codigo;
+        capacidadMaxima: number,
+    ){
         this.nombre = nombre;
         this.stock = stock;
-        this.precioUnitario = precioUnitario;
+        this.capacidadMaxima = capacidadMaxima;
+
+    }
+    vender (): void{
+        this.stock -= 5;
+        console.log(`${this.nombre} registra una salida de inventario`);
     }
 
-    agregarStock(cantidad: number): void {
-        this.stock += cantidad;
-        console.log(`${this.nombre} - Stock actualizado: ${this.stock} unidades`);
-    }
-
-    vender(cantidad: number): void {
-        if (cantidad <= this.stock) {
-            this.stock -= cantidad;
-            console.log(`${this.nombre} - Venta realizada. Stock restante: ${this.stock} unidades`);
-        } else {
-            console.log(`${this.nombre} - Stock insuficiente. Stock actual: ${this.stock} unidades`);
-        }
-    }
-
-    calcularValor(): number {
-        return this.stock * this.precioUnitario;
+    ampliarCapacidad(): void{
+        this.capacidadMaxima += 10;
+        console.log(`${this.nombre} ha ampliado su capacidad de almacenamiento`);
     }
 }
 
-const camiseta = new Producto("PROD001", "Camiseta Sport", 50, 15.50);
-const laptop = new Producto("PROD002", "Laptop HP", 10, 850.00);
+const taladro = new Producto("Taladro 01", 80, 100);
+const papelBond = new Producto("Papel Bond 02", 90, 100);
 
-camiseta.vender(5);
-console.log("Valor de inventario:", camiseta.calcularValor());
-laptop.agregarStock(3);
-laptop.agregarStock(2);
-console.log("Valor de inventario:", laptop.calcularValor());
-laptop.vender(5);
-laptop.vender(10);
-console.log("Stock final:", laptop.stock);
+taladro.vender();
+console.log(papelBond.stock);
+papelBond.ampliarCapacidad();
+papelBond.ampliarCapacidad();
+console.log(papelBond.capacidadMaxima);
+papelBond.vender();
+papelBond.vender();
+console.log(papelBond.stock);

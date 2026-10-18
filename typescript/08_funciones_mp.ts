@@ -1,100 +1,112 @@
-// Funciones aplicadas al control de inventario
+// Control de Inventario — Deyvi Rivera
+// Funciones simples, opcionales, flecha, overloads y closures aplicadas al inventario
 
-// Funciones Simples
-function calcularValorInventario(stock: number, precioUnitario: number): number {
-    return stock * precioUnitario;
+//Funciones Simples
+function sumarStock(stock1: number, stock2: number): number {
+    return stock1 + stock2;
 }
 
-const totalInventario: number = calcularValorInventario(50, 15.75);
-console.log(`Valor total del inventario: $${totalInventario}`);
+const totalStock: number = sumarStock(10, 20);
 
-// Sin devolver un valor
-function mostrarProductosEnAlmacen(nombreAlmacen: string): void {
-    console.log(`Almacén: ${nombreAlmacen}`);
-    const productos: string[] = ["Camiseta Sport", "Laptop HP", "Audífonos", "Mouse"];
+console.log(`Total de unidades en stock: ${totalStock}`);
+
+//Sin devolver un valor
+
+function mostrarBodega(nombre: string): void {
+    console.log(`Bodega: ${nombre}`);
+
+    const productos: string[] = ["Taladro", "Papel Bond", "Detergente"];
+
     for (const producto of productos) {
         console.log(`Producto disponible: ${producto}`);
     }
 }
 
-mostrarProductosEnAlmacen("Almacén Sur");
+mostrarBodega("Bodega Central");
 
-// Funciones con parámetros opcionales
-function registrarProducto(nombre: string, stock?: number): void {
-    if (stock) {
-        console.log(`Producto ${nombre} registrado con ${stock} unidades.`);
+//Funciones con parámetros opcionales
+function registrarProducto(nombre: string, nivel?: number): void {
+    if (nivel) {
+        console.log(`El producto ${nombre} está registrado con stock ${nivel}`);
     } else {
-        console.log(`Producto ${nombre} registrado.`);
-        stock = 0;
-        console.log(`Stock por defecto: ${stock} unidades`);
+        console.log(`El producto ${nombre} está registrado`);
+        nivel = 1;
+        console.log(`Stock por defecto: ${nivel}`);
     }
 }
 
-registrarProducto("Teclado", 20);
-registrarProducto("Monitor");
+registrarProducto("Taladro 01", 5);
+registrarProducto("Papel Bond 02");
 
-// Funciones con parámetro por defecto
-function registrarProducto2(nombre: string, stock: number = 0): void {
-    console.log(`Producto ${nombre} registrado con ${stock} unidades.`);
+
+function registrarProducto2(nombre: string, nivel: number = 1): void {
+    console.log(`El producto ${nombre} está registrado con stock ${nivel}`);
 }
 
-registrarProducto2("Impresora", 5);
-registrarProducto2("Cargador");
+registrarProducto2("Detergente 03", 5);
+registrarProducto2("Brocha 04");
 
-// Funciones flecha
-function calcularReposicion(falta: number): number {
-    return falta * 1;
+//Funciones Flecha
+
+function potenciarValor(valor: number): number {
+    return valor * 2;
 }
 
-const calcularReposicionFlecha = (falta: number): number => falta * 2;
+const potenciarValorFlecha = (valor: number): number => valor * 2;
 
-const unidadesFaltantes: number = 15;
-const unidadesRecomendadas: number = calcularReposicion(unidadesFaltantes);
-console.log(`Unidades faltantes: ${unidadesFaltantes}, Unidades a reponer: ${unidadesRecomendadas}`);
+const valorOriginal: number = 50;
+const valorPotenciado: number = potenciarValor(valorOriginal);
 
-const unidadesRecomendadasFlecha: number = calcularReposicionFlecha(unidadesFaltantes);
-console.log(`Unidades faltantes: ${unidadesFaltantes}, Unidades a reponer: ${unidadesRecomendadasFlecha}`);
+console.log(`Valor original: ${valorOriginal}, Valor potenciado: ${valorPotenciado}`);
 
-// Funciones Overloads
-function formatearInventario(valor: number): string;
-function formatearInventario(valor: string): string;
-function formatearInventario(valor: boolean): string;
+const valorPotenciadoFlecha: number = potenciarValorFlecha(valorOriginal);
+console.log(`Valor original: ${valorOriginal}, Valor potenciado: ${valorPotenciadoFlecha}`);
 
-function formatearInventario(valor: number | string | boolean): string {
-    if (typeof valor === "number") {
-        return valor.toLocaleString("es-MX", { minimumFractionDigits: 2 });
+
+//FUNCIONES OVERLOADS
+
+function formatear(valor: number): string;
+function formatear(valor: string): string;
+function formatear(valor: boolean): string;
+
+function formatear(valor: number | string | boolean): string {
+    if(typeof valor === "number"){
+        return valor.toLocaleString("es-MX",{ minimumFractionDigits: 2})
     }
-    if (typeof valor === "boolean") {
-        return valor ? "Disponible" : "No disponible";
+    if(typeof valor === "boolean"){
+        return valor? "si":"no"
     }
-    return `"${valor}"`;
+    return `"${valor}"`
 }
 
-console.log(formatearInventario(12345.5));
-console.log(formatearInventario(true));
-console.log(formatearInventario("En revisión"));
+console.log(formatear(1233434.5))
+console.log(formatear(true))
+console.log(formatear("activo"))
 
-// Closures
-function crearContadorStock(inicio: number = 0) {
+
+
+//Closures
+
+function crearContadorStock(inicio: number = 0){
     let cuenta = inicio;
-    return {
-        incrementar: () => ++cuenta,
-        decrementar: () => --cuenta,
-        valor: () => cuenta,
-        resetear: () => { cuenta = inicio; },
-    };
+    return{
+        incrementar : () => ++cuenta,
+        decrementar :() => --cuenta,
+        valor:()=> cuenta,
+        resetear: () => {cuenta = inicio;}
+    }
 }
 
-const contador1 = crearContadorStock();
-const contador2 = crearContadorStock(10);
+const c1 = crearContadorStock();
+const c2 = crearContadorStock(10);
 
-contador1.incrementar();
-contador1.decrementar();
-contador1.valor();
-contador1.resetear();
+c1.incrementar();
+c1.incrementar();
+c1.incrementar();
+c2.incrementar();
 
-console.log(contador1.valor());
-console.log(contador2.valor());
+console.log(c1.valor());
+console.log(c2.valor());
 
-contador1.resetear();
-console.log(contador1.valor());
+c1.resetear()
+console.log(c1.valor());

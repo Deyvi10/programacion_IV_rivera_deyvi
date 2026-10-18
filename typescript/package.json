@@ -2,40 +2,12 @@
   "name": "typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "01_hello_world.js",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "hello": "tsx 01_hello_world.ts",
-    "variables": "tsx 02_variables.ts",
-    "condicionales": "tsx 03_condicionales.ts",
-    "switch": "tsx 04_switch.ts",
-    "input": "tsx 05_input.ts",
-    "cicloFor": "tsx 06_ciclo_for.ts",
-    "liga": "tsx liga.ts",
-    "hello_mp": "tsx 01_hello_world_mp.ts",
-    "variables_mp": "tsx 02_variables_mp.ts",
-    "condicionales_mp": "tsx 03_condicionales_mp.ts",
-    "switch_mp": "tsx 04_switch_mp.ts",
-    "input_mp": "tsx 05_input_mp.ts",
-    "cicloFor_mp": "tsx 06_ciclo_for_mp.ts",
-    "cicloWhile_mp": "tsx 07_ciclo_while_mp.ts",
-    "funciones_mp": "tsx 08_funciones_mp.ts",
-    "types_mp": "tsx 09_types_mp.ts",
-    "pooClase_mp": "tsx 10_poo_clase_mp.ts",
-    "encapsulamiento_mp": "tsx 11_poo_encapsulamiento_mp.ts",
-    "herencia_mp": "tsx 12_poo_herencia_mp.ts",
-    "polimorfismo_mp": "tsx 13_poo_polimorfismos_mp.ts",
-    "abstraccion_mp": "tsx 14_poo_abstracción_mp.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
-  },
-  "devDependencies": {
-    "@types/node": "^22.20.5"
-  }
+  "type": "commonjs"
 }
