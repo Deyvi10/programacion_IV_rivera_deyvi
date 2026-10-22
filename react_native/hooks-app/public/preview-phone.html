@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>hooks-app · vista de celular</title>
+    <style>
+      :root {
+        --phone-w: 412px;
+        --phone-h: 915px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b1220 55%, #05080f 100%);
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        color: #94a3b8;
+        padding: 28px 16px;
+      }
+
+      .phone {
+        position: relative;
+        height: min(var(--phone-h), calc(100vh - 90px));
+        width: auto;
+        aspect-ratio: 412 / 915;
+        padding: 10px;
+        border-radius: 46px;
+        background: linear-gradient(160deg, #3f4652 0%, #171b22 40%, #0d1015 100%);
+        box-shadow:
+          0 0 0 1px #000 inset,
+          0 30px 60px -20px rgba(0, 0, 0, 0.9),
+          0 0 0 10px rgba(255, 255, 255, 0.03);
+      }
+
+      .screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 36px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+        background: #ffffff;
+      }
+
+      /* Cámara frontal (punch hole) */
+      .camera {
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #05080f;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.06);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 10px #22c55e;
+      }
+
+      .hint {
+        font-size: 12px;
+        color: #64748b;
+      }
+
+      @media (max-width: 520px) {
+        :root {
+          --phone-w: 100vw;
+          --phone-h: 100vh;
+        }
+        body {
+          padding: 0;
+          gap: 0;
+        }
+        .phone {
+          width: 100vw;
+          height: 100vh;
+          aspect-ratio: auto;
+          border-radius: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+        .screen {
+          border-radius: 0;
+        }
+        .label,
+        .hint {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="screen">
+        <div class="camera"></div>
+        <iframe src="/" title="hooks-app"></iframe>
+      </div>
+    </div>
+
+    <div class="label"><span class="dot"></span> hooks-app · 412 × 915 (Pixel)</div>
+    <div class="hint">Abre esta vista en <code>http://localhost:8081/preview-phone.html</code></div>
+  </body>
+</html>
