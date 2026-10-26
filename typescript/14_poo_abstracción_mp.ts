@@ -1,65 +1,56 @@
-// abstracción aplicada al control de inventario
+// POO - Abstracción aplicada al control de inventario
 
 abstract class Producto {
-    constructor(
-        public nombre: string,
-        public precio: number
-    ) {}
-
-    abstract calcularPrecioFinal(): number;
-
-    mostrarFicha(): void {
-        console.log(`${this.nombre} — Precio final: $${this.calcularPrecioFinal().toFixed(2)}`);
-    }
-}
-
-class ProductoPerecedero extends Producto {
-    calcularPrecioFinal(): number {
-        return this.precio * 0.75;
+    abstract reabastecer(): void;
+    registrarEntrada(): void {
+        console.log("Entrada de mercancía registrada en el sistema");
     }
 }
 
 class ProductoElectronico extends Producto {
-    calcularPrecioFinal(): number {
-        return this.precio * 1.2;
+    reabastecer(): void {
+        console.log("Reabasteciendo productos electrónicos desde proveedor de tecnología");
+    }
+}
+
+class ProductoAlimenticio extends Producto {
+    reabastecer(): void {
+        console.log("Reabasteciendo productos alimenticios desde proveedor de alimentos");
     }
 }
 
 const productos: Producto[] = [
-    new ProductoPerecedero("Leche Entera", 1.25),
-    new ProductoElectronico("Teclado Mecánico", 45),
+    new ProductoElectronico(),
+    new ProductoAlimenticio()
 ];
 
-productos.forEach((producto) => producto.mostrarFicha());
+console.log(productos);
+productos.forEach(producto => producto.reabastecer());
 
-abstract class MovimientoInventario {
-    constructor(public producto: string) {}
-
-    abstract ejecutar(): void;
-
-    registrar(): void {
-        console.log(`Registrando movimiento de ${this.producto}...`);
+// Ejemplo adicional
+abstract class Almacen {
+    abstract clasificar(): void;
+    auditar(): void {
+        console.log("Realizando auditoría de inventario");
     }
 }
 
-class Entrada extends MovimientoInventario {
-    ejecutar(): void {
-        console.log(`Entrada de stock: ${this.producto}`);
+class AlmacenGeneral extends Almacen {
+    clasificar(): void {
+        console.log("Clasificando productos por categoría general");
     }
 }
 
-class Salida extends MovimientoInventario {
-    ejecutar(): void {
-        console.log(`Salida de stock: ${this.producto}`);
+class AlmacenFrio extends Almacen {
+    clasificar(): void {
+        console.log("Clasificando productos refrigerados según temperatura");
     }
 }
 
-const movimientos: MovimientoInventario[] = [
-    new Entrada("Camiseta Sport"),
-    new Salida("Audífonos Bluetooth"),
+const almacenes: Almacen[] = [
+    new AlmacenGeneral(),
+    new AlmacenFrio()
 ];
 
-movimientos.forEach((movimiento) => {
-    movimiento.registrar();
-    movimiento.ejecutar();
-});
+console.log(almacenes);
+almacenes.forEach(almacen => almacen.clasificar());

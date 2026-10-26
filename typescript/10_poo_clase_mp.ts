@@ -1,53 +1,50 @@
-// clases aplicadas al control de inventario
+// POO - Clase aplicada al control de inventario
 
 class Producto {
-    nombre: string;
-    precio: number;
-    stock: number;
+    public codigo: string;
+    public nombre: string;
+    public stock: number;
+    public precioUnitario: number;
 
-    constructor(nombre: string, precio: number, stock: number) {
+    constructor(
+        codigo: string,
+        nombre: string,
+        stock: number,
+        precioUnitario: number,
+    ) {
+        this.codigo = codigo;
         this.nombre = nombre;
-        this.precio = precio;
         this.stock = stock;
+        this.precioUnitario = precioUnitario;
+    }
+
+    agregarStock(cantidad: number): void {
+        this.stock += cantidad;
+        console.log(`${this.nombre} - Stock actualizado: ${this.stock} unidades`);
     }
 
     vender(cantidad: number): void {
         if (cantidad <= this.stock) {
             this.stock -= cantidad;
-            console.log(`Se vendieron ${cantidad} unidades de ${this.nombre}.`);
-            console.log(`Stock restante: ${this.stock}`);
+            console.log(`${this.nombre} - Venta realizada. Stock restante: ${this.stock} unidades`);
         } else {
-            console.log(`No hay stock suficiente de ${this.nombre}.`);
-            console.log(`Stock disponible: ${this.stock}`);
+            console.log(`${this.nombre} - Stock insuficiente. Stock actual: ${this.stock} unidades`);
         }
     }
 
-    mostrarFicha(): void {
-        console.log(`Producto: ${this.nombre}`);
-        console.log(`Precio: $${this.precio}`);
-        console.log(`Stock: ${this.stock} unidades`);
+    calcularValor(): number {
+        return this.stock * this.precioUnitario;
     }
 }
 
-const camiseta = new Producto("Camiseta Sport", 12.5, 25);
-camiseta.mostrarFicha();
+const camiseta = new Producto("PROD001", "Camiseta Sport", 50, 15.50);
+const laptop = new Producto("PROD002", "Laptop HP", 10, 850.00);
+
 camiseta.vender(5);
-camiseta.vender(30);
-
-// clase usando parámetros del constructor como propiedades
-class Proveedor {
-    constructor(
-        public nombre: string,
-        public pais: string,
-        public productos: number
-    ) {}
-
-    mostrarProveedor(): void {
-        console.log(`Proveedor: ${this.nombre}`);
-        console.log(`País: ${this.pais}`);
-        console.log(`Productos suministrados: ${this.productos}`);
-    }
-}
-
-const proveedor = new Proveedor("SportTex", "Ecuador", 12);
-proveedor.mostrarProveedor();
+console.log("Valor de inventario:", camiseta.calcularValor());
+laptop.agregarStock(3);
+laptop.agregarStock(2);
+console.log("Valor de inventario:", laptop.calcularValor());
+laptop.vender(5);
+laptop.vender(10);
+console.log("Stock final:", laptop.stock);

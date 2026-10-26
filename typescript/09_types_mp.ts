@@ -1,66 +1,60 @@
-// tipos personalizados aplicados al control de inventario
+// Types aplicados al control de inventario
 
-type ID = string | number;
-type Precio = number;
-type Ubicacion = [pasillo: number, estante: number];
-
-type Punto = {
+type IDProducto = string | number;
+type Categoria = string;
+type CoordenadasAlmacen = [number, number];
+type Ubicacion = {
     pasillo: number;
     estante: number;
 };
 
-const origen: Punto = { pasillo: 0, estante: 0 };
-const idProducto: ID = 42;
-const idProveedor: ID = "PRV-001";
-const ubicacionCamiseta: Ubicacion = [2, 4];
+const origenAlmacen: Ubicacion = { pasillo: 1, estante: 0 };
+const idProd: IDProducto = 1001;
+const idProd2: IDProducto = "PROD-002";
 
-type ProductoBase = Punto & {
-    zona: string;
+type ProductoCompleto = Ubicacion & {
+    codigo: IDProducto;
+    stock: number;
 };
 
-const productoBase: ProductoBase = { pasillo: 2, estante: 3, zona: "Bodega Norte" };
-
 interface Producto {
-    readonly id: number;
+    readonly codigo: IDProducto;
     nombre: string;
-    precio: Precio;
+    categoria: Categoria;
     stock: number;
-    categoria?: string;
+    disponible?: boolean;
 }
 
-interface ProductoPerecedero extends Producto {
-    fechaVencimiento: string;
+interface ProductoElectronico extends Producto {
+    garantia: string;
+    marca: string;
 }
 
 const producto1: Producto = {
-    id: 1,
+    codigo: 1001,
     nombre: "Camiseta Sport",
-    precio: 12.5,
-    stock: 25,
     categoria: "Ropa",
+    stock: 25
 };
 
 const producto2: Producto = {
-    id: 2,
-    nombre: "Leche Entera",
-    precio: 1.25,
-    stock: 40,
+    codigo: "PROD-002",
+    nombre: "Laptop HP",
+    categoria: "Electrónica",
+    stock: 5,
+    disponible: true
 };
 
-const producto3: ProductoPerecedero = {
-    id: 3,
-    nombre: "Yogurt Natural",
-    precio: 2.1,
-    stock: 18,
-    categoria: "Alimentos",
-    fechaVencimiento: "2026-11-15",
-};
-
-console.log(origen);
-console.log(idProducto);
-console.log(idProveedor);
-console.log(ubicacionCamiseta);
-console.log(productoBase);
 console.log(producto1);
 console.log(producto2);
-console.log(producto3);
+
+const laptop: ProductoElectronico = {
+    codigo: "PROD-003",
+    nombre: "Laptop Dell",
+    categoria: "Electrónica",
+    stock: 10,
+    garantia: "1 año",
+    marca: "Dell"
+};
+
+console.log(laptop);

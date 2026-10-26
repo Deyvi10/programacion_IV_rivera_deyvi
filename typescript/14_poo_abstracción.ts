@@ -55,5 +55,3 @@ const sayajins: Sayajin[]=[
 
 console.log(sayajins);
 sayajins.forEach(sayajin=>sayajin.transformarse())
-
-

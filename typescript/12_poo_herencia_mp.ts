@@ -1,57 +1,60 @@
-// herencia aplicada al control de inventario
+// POO - Herencia aplicada al control de inventario
 
 class Producto {
-    constructor(
-        public nombre: string,
-        public precio: number,
-        public stock: number
-    ) {}
-
-    vender(): void {
-        console.log(`${this.nombre} fue vendido del inventario.`);
+    agregarStock(cantidad: number): void {
+        console.log(`Stock agregado: ${cantidad} unidades`);
     }
 
-    mostrarProducto(): void {
-        console.log(`Producto: ${this.nombre} | Precio: $${this.precio} | Stock: ${this.stock}`);
+    mostrarInfo(): void {
+        console.log("Producto genérico");
     }
 }
 
-class Perecedero extends Producto {
-    constructor(
-        nombre: string,
-        precio: number,
-        stock: number,
-        public fechaVencimiento: string
-    ) {
-        super(nombre, precio, stock);
-    }
-
-    verificarVencimiento(): void {
-        console.log(`${this.nombre} vence el ${this.fechaVencimiento}.`);
+class ProductoElectronico extends Producto {
+    garantia(): void {
+        console.log("Producto electrónico con garantía de 12 meses");
     }
 }
 
-class Electronico extends Producto {
-    constructor(
-        nombre: string,
-        precio: number,
-        stock: number,
-        public mesesGarantia: number
-    ) {
-        super(nombre, precio, stock);
-    }
-
-    aplicarGarantia(): void {
-        console.log(`${this.nombre} tiene ${this.mesesGarantia} meses de garantía.`);
+class ProductoAlimenticio extends Producto {
+    fechaCaducidad(): void {
+        console.log("Producto alimenticio con fecha de caducidad registrada");
     }
 }
 
-const leche = new Perecedero("Leche Entera", 1.25, 40, "2026-11-15");
-leche.mostrarProducto();
-leche.vender();
-leche.verificarVencimiento();
+const laptop = new ProductoElectronico();
+laptop.mostrarInfo();
+laptop.agregarStock(5);
+laptop.garantia();
 
-const audifonos = new Electronico("Audífonos Bluetooth", 35, 10, 12);
-audifonos.mostrarProducto();
-audifonos.vender();
-audifonos.aplicarGarantia();
+const pan = new ProductoAlimenticio();
+pan.mostrarInfo();
+pan.agregarStock(20);
+pan.fechaCaducidad();
+
+// Ejemplo adicional
+class Articulo {
+    recibirMercancia(): void {
+        console.log("Mercancía recibida en almacén");
+    }
+}
+
+class Ropa extends Articulo {
+    verificarTalla(): void {
+        console.log("Verificando disponibilidad por tallas");
+    }
+}
+
+class Calzado extends Articulo {
+    verificarNumero(): void {
+        console.log("Verificando disponibilidad por número");
+    }
+}
+
+const camiseta = new Ropa();
+camiseta.recibirMercancia();
+camiseta.verificarTalla();
+
+const zapato = new Calzado();
+zapato.recibirMercancia();
+zapato.verificarNumero();

@@ -1,75 +1,65 @@
-// ciclos while y do-while aplicados al control de inventario
+// ciclos while aplicados al control de inventario
 
-// reposición de stock hasta alcanzar el máximo del almacén
-let stock: number = 100;
-const stockMaximo: number = 500;
+let stockActual = 10;
+let stockMaximo = 50;
 
-while (stock < stockMaximo) {
-    stock += 100;
-    console.log(`Reponiendo inventario: ${stock} unidades en almacén.`);
+while (stockActual < stockMaximo) {
+    console.log("Stock actual: ", stockActual);
+    stockActual += 10;
 }
 
-// auditoría por niveles del inventario
-let nivelAuditoria: number = 1;
+let revisionAlmacen = 1;
 
-while (nivelAuditoria <= 5) {
-    console.log(`Nivel de auditoría de inventario: ${nivelAuditoria}`);
-    nivelAuditoria++;
+while (revisionAlmacen <= 5) {
+    console.log("Revisión de almacén número: ", revisionAlmacen);
+    revisionAlmacen++;
 }
 
-// despachos con validación aleatoria de disponibilidad
-let despachos: number = 0;
-let despachosExitosos: number = 0;
-
-while (despachos < 10) {
-    despachos++;
-    const disponible = Math.random() < 0.5;
-    if (disponible) {
-        despachosExitosos++;
-        console.log(`Despacho ${despachos}: producto entregado. Total de entregas: ${despachosExitosos}`);
+let movimientos = 0;
+let ingresosRegistrados = 0;
+while (movimientos < 10) {
+    movimientos++;
+    let ingreso = Math.random() < 0.5;
+    if (ingreso) {
+        ingresosRegistrados++;
+        console.log(`Movimiento ${movimientos}: Ingreso registrado. Total ingresos: ${ingresosRegistrados}`);
     } else {
-        console.log(`Despacho ${despachos}: sin stock. Total de entregas: ${despachosExitosos}`);
+        console.log(`Movimiento ${movimientos}: Salida registrada. Total ingresos: ${ingresosRegistrados}`);
     }
 }
 
-// intentos de reposición con do-while
-let intentosReposicion: number = 0;
-
+let lotesProcesados = 0;
 do {
-    intentosReposicion++;
-    console.log(`Intento de reposición número: ${intentosReposicion}`);
-} while (intentosReposicion < 3);
+    lotesProcesados++;
+    console.log(`Lote procesado número: ${lotesProcesados}`);
+} while (lotesProcesados < 5);
 
-// recorrido de productos con continue y break
-interface Producto {
+interface ProductoInventario {
+    codigo: string;
     nombre: string;
     categoria: string;
     stock: number;
 }
 
-const productosInventario: Producto[] = [
-    { nombre: "Camiseta Sport", categoria: "Ropa", stock: 40 },
-    { nombre: "Audífonos Bluetooth", categoria: "Electrónica", stock: 8 },
-    { nombre: "Teclado Mecánico", categoria: "Electrónica", stock: 0 },
-    { nombre: "Mochila Urbana", categoria: "Accesorios", stock: 15 },
+const productosEscaneados: ProductoInventario[] = [
+    { codigo: "PROD001", nombre: "Camiseta Sport", categoria: "Ropa", stock: 25 },
+    { codigo: "PROD002", nombre: "Laptop HP", categoria: "Electrónica", stock: 5 },
+    { codigo: "PROD003", nombre: "Lápiz HB", categoria: "Papelería", stock: 150 },
+    { codigo: "PROD004", nombre: "Audífonos", categoria: "Electrónica", stock: 8 }
 ];
 
-let indice: number = 0;
-
-while (indice < productosInventario.length) {
-    const producto = productosInventario[indice];
-    if (!producto) break;
-
-    if (producto.categoria === "Electrónica") {
-        console.log(`Producto: ${producto.nombre}, Stock: ${producto.stock}`);
+let indice = 0;
+while (indice < productosEscaneados.length) {
+    const producto = productosEscaneados[indice];
+    if (producto?.categoria === "Electrónica") {
+        console.log(`Producto: ${producto.nombre}, Código: ${producto.codigo}, Stock: ${producto.stock}`);
         indice++;
         continue;
     }
 
-    if (producto.stock === 0) {
-        console.log(`Sin stock: ${producto.nombre}`);
+    if (producto?.stock < 10) {
+        console.log(`Producto: ${producto.nombre}, Código: ${producto.codigo}, Stock: ${producto.stock} - REPOSICIÓN URGENTE`);
         break;
     }
-
     indice++;
 }

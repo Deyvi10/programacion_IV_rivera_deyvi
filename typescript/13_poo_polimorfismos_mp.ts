@@ -1,36 +1,34 @@
-// polimorfismo aplicado al control de inventario
+// POO - Polimorfismo aplicado al control de inventario
 
 class Producto {
-    constructor(
-        public nombre: string,
-        public precio: number
-    ) {}
-
-    calcularPrecioFinal(): number {
-        return this.precio;
-    }
-
-    mostrarPrecio(): void {
-        console.log(`${this.nombre}: $${this.calcularPrecioFinal().toFixed(2)}`);
-    }
-}
-
-class ProductoPerecedero extends Producto {
-    override calcularPrecioFinal(): number {
-        return this.precio * 0.8;
+    verificar(): void {
+        console.log("Verificación básica de producto");
     }
 }
 
 class ProductoElectronico extends Producto {
-    override calcularPrecioFinal(): number {
-        return this.precio * 1.15;
+    override verificar(): void {
+        console.log("Verificando estado técnico y garantía");
+    }
+}
+
+class ProductoAlimenticio extends Producto {
+    override verificar(): void {
+        console.log("Verificando fecha de caducidad y condiciones de almacenamiento");
+    }
+}
+
+class ProductoRopa extends Producto {
+    override verificar(): void {
+        console.log("Verificando calidad, etiquetas y tallas");
     }
 }
 
 const productos: Producto[] = [
-    new Producto("Mochila Urbana", 25),
-    new ProductoPerecedero("Yogurt Natural", 2.1),
-    new ProductoElectronico("Audífonos Bluetooth", 35),
+    new ProductoElectronico(),
+    new ProductoAlimenticio(),
+    new ProductoRopa(),
+    new ProductoAlimenticio()
 ];
 
-productos.forEach((producto) => producto.mostrarPrecio());
+productos.forEach(producto => producto.verificar());
