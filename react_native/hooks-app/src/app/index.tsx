@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 // Importas cada paso desde su respectivo archivo
 import Paso1 from '../app/paso1'
+import Paso1Mp from '../app/paso1_mp'
 
 
 export default function Index() {
@@ -12,6 +13,7 @@ export default function Index() {
   const renderPaso = () => {
     switch (pasoActual) {
       case 1: return <Paso1 />
+      case 2: return <Paso1Mp />
 
       default: return <Paso1 />
     }

@@ -17,7 +17,15 @@
     "condicionales_mp": "tsx 03_condicionales_mp.ts",
     "switch_mp": "tsx 04_switch_mp.ts",
     "input_mp": "tsx 05_input_mp.ts",
-    "cicloFor_mp": "tsx 06_ciclo_for_mp.ts"
+    "cicloFor_mp": "tsx 06_ciclo_for_mp.ts",
+    "cicloWhile_mp": "tsx 07_ciclo_while_mp.ts",
+    "funciones_mp": "tsx 08_funciones_mp.ts",
+    "types_mp": "tsx 09_types_mp.ts",
+    "pooClase_mp": "tsx 10_poo_clase_mp.ts",
+    "encapsulamiento_mp": "tsx 11_poo_encapsulamiento_mp.ts",
+    "herencia_mp": "tsx 12_poo_herencia_mp.ts",
+    "polimorfismo_mp": "tsx 13_poo_polimorfismos_mp.ts",
+    "abstraccion_mp": "tsx 14_poo_abstracción_mp.ts"
   },
   "keywords": [],
   "author": "",
