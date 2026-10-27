@@ -1,77 +1,52 @@
 // app/index.tsx
-import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { View, Text } from 'react-native'
+import { Paso1 } from './paso1'
+import { Paso2 } from './paso2'
+import { Paso3 } from './paso3'
+import { Paso3Suma } from './paso3Suma'
+import { Paso4 } from './paso4'
+import { Paso1mp } from './paso1_mp'
+import { Paso2mp } from './paso2_mp'
+import { Paso4mp } from './paso4_mp'
+import { Paso3mp } from './paso3_mp'
 
-// Importas cada paso desde su respectivo archivo
-import Paso1 from '../app/paso1'
-
+// ┌──────────────────────────────────────────────────────────────────┐
+// │  Cambia este número y guarda (Ctrl+S) para navegar entre pasos. │
+// │  1  Paso 1  useState — contador de reintentos                    │
+// │  2  Paso 2  useEffect — ping periódico con setInterval           │
+// │  3  Paso 3  useRef — foco en TextInput y contador sin re-render  │
+// │  4  Paso 4  Hooks nativos de RN — dimensiones, esquema de color  │
+// │  5  Paso 5  Custom hook — useConexionSimulada                    │
+// │  6  Paso 6  Ejemplo combinado — pantalla de estado del servidor  │
+// └──────────────────────────────────────────────────────────────────┘
+const PASO = 9
 
 export default function Index() {
-  const [pasoActual, setPasoActual] = useState<number>(1)
-
-  const renderPaso = () => {
-    switch (pasoActual) {
-      case 1: return <Paso1 />
-
-      default: return <Paso1 />
-    }
+  switch (PASO) {
+    case 1:
+      return <Paso1 />
+    case 2:
+      return <Paso2 />
+    case 3:
+      return <Paso3 />
+    case 4:
+      return <Paso3Suma />
+    case 5:
+      return <Paso4 />
+    case 6:
+      return <Paso1mp />
+    case 7:
+      return <Paso2mp />
+    case 8:
+      return <Paso3mp />
+    case 9:
+      return <Paso4mp />
+    default:
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Paso {PASO}: crea la pantalla primero</Text>
+        </View>
+      )
   }
-
-  return (
-    <View style={styles.contenedorPadre}>
-      {/* Barra superior de selección */}
-      <View style={styles.barraMenu}>
-        {[1, 2, 3, 4, 5, 6].map((num) => (
-          <Pressable
-            key={num}
-            style={[styles.botonPaso, pasoActual === num && styles.botonActivo]}
-            onPress={() => setPasoActual(num)}
-          >
-            <Text style={[styles.textoPaso, pasoActual === num && styles.textoActivo]}>
-              P{num}
-            </Text>
-          </Pressable>
-        ))}
-      </View>
-
-      {/* Renderizado del paso seleccionado */}
-      <View style={styles.contenidoPaso}>
-        {renderPaso()}
-      </View>
-    </View>
-  )
 }
 
-const styles = StyleSheet.create({
-  contenedorPadre: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  barraMenu: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingTop: 50, // Espacio para el status bar
-    paddingBottom: 10,
-    backgroundColor: '#1e293b',
-  },
-  botonPaso: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 6,
-    backgroundColor: '#334155',
-  },
-  botonActivo: {
-    backgroundColor: '#2563eb',
-  },
-  textoPaso: {
-    color: '#94a3b8',
-    fontWeight: '600',
-    fontSize: 13,
-  },
-  textoActivo: {
-    color: '#ffffff',
-  },
-  contenidoPaso: {
-    flex: 1,
-  },
-})
