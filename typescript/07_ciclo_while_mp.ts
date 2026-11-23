@@ -1,65 +1,57 @@
-// ciclos while aplicados al control de inventario
+// Control de Inventario — Deyvi Rivera
+// Ciclos while y do-while para el control de stock y conteos de bodega
 
-let stockActual = 10;
-let stockMaximo = 50;
+let stockActual = 1024;
+let stockMaximo = 2048;
 
 while (stockActual < stockMaximo) {
-    console.log("Stock actual: ", stockActual);
-    stockActual += 10;
-}
-
-let revisionAlmacen = 1;
-
-while (revisionAlmacen <= 5) {
-    console.log("Revisión de almacén número: ", revisionAlmacen);
-    revisionAlmacen++;
+    console.log(`Capacidad de la bodega: ${stockActual}`);
+    stockActual += 256;
 }
 
 let movimientos = 0;
-let ingresosRegistrados = 0;
+let entradasAprobadas = 0;
+
 while (movimientos < 10) {
     movimientos++;
-    let ingreso = Math.random() < 0.5;
-    if (ingreso) {
-        ingresosRegistrados++;
-        console.log(`Movimiento ${movimientos}: Ingreso registrado. Total ingresos: ${ingresosRegistrados}`);
+    let aprobado = Math.random() < 0.5;
+    if (aprobado) {
+        entradasAprobadas++;
+        console.log(`Validación ${movimientos}: ¡Aprobada! Total aprobadas: ${entradasAprobadas}`);
     } else {
-        console.log(`Movimiento ${movimientos}: Salida registrada. Total ingresos: ${ingresosRegistrados}`);
+        console.log(`Validación ${movimientos}: Rechazada. Total aprobadas: ${entradasAprobadas}`);
     }
 }
 
-let lotesProcesados = 0;
+let conteos = 0;
 do {
-    lotesProcesados++;
-    console.log(`Lote procesado número: ${lotesProcesados}`);
-} while (lotesProcesados < 5);
+    conteos++;
+    console.log(`Conteo físico número: ${conteos}`);
+} while (conteos < 5);
 
-interface ProductoInventario {
-    codigo: string;
+interface Bodega {
     nombre: string;
-    categoria: string;
-    stock: number;
+    tipo: string;
+    capacidad: number;
 }
 
-const productosEscaneados: ProductoInventario[] = [
-    { codigo: "PROD001", nombre: "Camiseta Sport", categoria: "Ropa", stock: 25 },
-    { codigo: "PROD002", nombre: "Laptop HP", categoria: "Electrónica", stock: 5 },
-    { codigo: "PROD003", nombre: "Lápiz HB", categoria: "Papelería", stock: 150 },
-    { codigo: "PROD004", nombre: "Audífonos", categoria: "Electrónica", stock: 8 }
+const bodegasEscaneadas: Bodega[] = [
+    { nombre: "Bodega Norte", tipo: "Ferretería", capacidad: 1050 },
+    { nombre: "Bodega Centro", tipo: "Papelería", capacidad: 1200 },
+    { nombre: "Bodega Frío", tipo: "Alimentos", capacidad: 900 },
+    { nombre: "Bodega Seca", tipo: "Limpieza", capacidad: 800 },
 ];
 
 let indice = 0;
-while (indice < productosEscaneados.length) {
-    const producto = productosEscaneados[indice];
-    if (producto?.categoria === "Electrónica") {
-        console.log(`Producto: ${producto.nombre}, Código: ${producto.codigo}, Stock: ${producto.stock}`);
+while (indice < bodegasEscaneadas.length) {
+    const bodega = bodegasEscaneadas[indice];
+    if (bodega?.tipo === "Ferretería") {
         indice++;
         continue;
     }
-
-    if (producto?.stock < 10) {
-        console.log(`Producto: ${producto.nombre}, Código: ${producto.codigo}, Stock: ${producto.stock} - REPOSICIÓN URGENTE`);
+    if (bodega?.capacidad < 1000) {
         break;
     }
+    console.log(`Bodega: ${bodega.nombre}, Tipo: ${bodega.tipo}, Capacidad: ${bodega.capacidad}`);
     indice++;
 }

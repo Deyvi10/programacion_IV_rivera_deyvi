@@ -1,60 +1,52 @@
-// Types aplicados al control de inventario
+// Control de Inventario — Deyvi Rivera
+// Tipos alias, intersecciones e interfaces para productos de inventario
 
-type IDProducto = string | number;
-type Categoria = string;
-type CoordenadasAlmacen = [number, number];
+type CodigoProducto = string | number;
+type SKU = string;
+type CoordenadasBodega = [number, number];
 type Ubicacion = {
     pasillo: number;
     estante: number;
 };
 
-const origenAlmacen: Ubicacion = { pasillo: 1, estante: 0 };
-const idProd: IDProducto = 1001;
-const idProd2: IDProducto = "PROD-002";
+const ubicacionOrigen: Ubicacion = { pasillo: 0, estante: 0 };
+const codigoProducto: CodigoProducto = 42;
+const codigoProducto2: CodigoProducto = "SKU.001";
 
-type ProductoCompleto = Ubicacion & {
-    codigo: IDProducto;
-    stock: number;
+type UbicacionExtendida = Ubicacion & {
+    nivel: number;
 };
 
 interface Producto {
-    readonly codigo: IDProducto;
+    readonly id: number;
     nombre: string;
-    categoria: Categoria;
-    stock: number;
-    disponible?: boolean;
+    categoria: string;
+    foto?: string;
 }
 
-interface ProductoElectronico extends Producto {
-    garantia: string;
-    marca: string;
+interface ProductoRefrigerado extends Producto {
+    temperatura: string;
 }
 
-const producto1: Producto = {
-    codigo: 1001,
-    nombre: "Camiseta Sport",
-    categoria: "Ropa",
-    stock: 25
+const p: Producto = {
+    id: 1,
+    nombre: "Taladro 01",
+    categoria: "Ferretería"
 };
 
-const producto2: Producto = {
-    codigo: "PROD-002",
-    nombre: "Laptop HP",
-    categoria: "Electrónica",
-    stock: 5,
-    disponible: true
+const p2: Producto = {
+    id: 2,
+    nombre: "Papel Bond 02",
+    categoria: "Papelería",
+    foto: "foto_producto.png"
 };
 
-console.log(producto1);
-console.log(producto2);
+console.log(p);
+console.log(p2);
 
-const laptop: ProductoElectronico = {
-    codigo: "PROD-003",
-    nombre: "Laptop Dell",
-    categoria: "Electrónica",
-    stock: 10,
-    garantia: "1 año",
-    marca: "Dell"
+const productoEspecial: ProductoRefrigerado = {
+    id: 3,
+    nombre: "Leche 03",
+    categoria: "Alimentos",
+    temperatura: "Refrigeración"
 };
-
-console.log(laptop);
