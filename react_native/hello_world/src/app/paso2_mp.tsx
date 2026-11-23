@@ -1,24 +1,24 @@
-// app/paso2_mp.tsx — Imágenes y botones (control de inventario)
+// Control de Inventario — Deyvi Rivera
+// app/index.tsx
 import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 
-export function Paso2Mp() {
+export function Paso2mp() {
   return (
     <View style={styles.contenedor}>
       <Image
         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
         style={styles.logo}
       />
-      <Text style={styles.titulo}>Registrar venta</Text>
-      <Text style={styles.detalle}>Camiseta Sport · Stock disponible: 25</Text>
+      <Text style={styles.titulo}>Sincronizar inventario</Text>
 
       <Pressable
         style={({ pressed }) => [
           styles.boton,
           pressed && styles.botonPresionado,
         ]}
-        onPress={() => Alert.alert('Venta registrada', 'Se descontó 1 unidad del inventario.')}
+        onPress={() => Alert.alert('Sincronizando', 'Actualizando existencias y alertas de reposición...')}
       >
-        <Text style={styles.textoBoton}>Vender 1 unidad</Text>
+        <Text style={styles.textoBoton}>Sincronizar Bodega</Text>
       </Pressable>
     </View>
   )
@@ -39,18 +39,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
   },
-  detalle: {
-    fontSize: 13,
-    color: '#777',
-  },
   boton: {
-    backgroundColor: '#2e7d32',
+    backgroundColor: '#1565c0',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
   },
   botonPresionado: {
-    backgroundColor: '#1b5e20',
+    backgroundColor: '#0d47a1',
   },
   textoBoton: {
     color: '#fff',

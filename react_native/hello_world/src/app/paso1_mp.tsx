@@ -1,12 +1,13 @@
-// app/paso1_mp.tsx — Texto y vistas básicas (control de inventario)
+// Control de Inventario — Deyvi Rivera
+// app/index.tsx — reemplaza la función Paso1
 import { StyleSheet, Text, View } from 'react-native'
 
-export function Paso1Mp() {
+export function Paso1mp() {
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Sistema de Inventario</Text>
-      <Text style={styles.subtitulo}>Producto: Camiseta Sport</Text>
-      <Text style={styles.detalle}>Stock: 25 unidades · Precio: $12.50</Text>
+      <Text style={styles.titulo}>Sistema de Control de Inventario</Text>
+      <Text style={styles.subtitulo}>Producto: Laptop Lenovo T14</Text>
+      <Text style={styles.detalle}>SKU-1001 · Tecnología · Bodega Central</Text>
     </View>
   )
 }
