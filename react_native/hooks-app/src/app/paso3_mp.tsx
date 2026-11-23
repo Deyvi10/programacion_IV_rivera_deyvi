@@ -1,3 +1,4 @@
+// Control de Inventario — Deyvi Rivera
 // app/index.tsx — agrega la función Paso3
 import { useRef, useState, useEffect, ComponentRef } from 'react'
 import {
@@ -6,70 +7,69 @@ import {
 
 export function Paso3mp() {
   // ── Uso 1: referencia a un TextInput para foco programático ─────────
-  const inputUnidadRef = useRef<ComponentRef<typeof TextInput>>(null)
-  const inputValidadorRef = useRef<ComponentRef<typeof TextInput>>(null)
+  const inputSkuRef = useRef<ComponentRef<typeof TextInput>>(null)
+  const inputBodegaRef = useRef<ComponentRef<typeof TextInput>>(null)
 
-  const [unidad, setUnidad] = useState<string>('')
-  const [validador, setValidador] = useState<string>('03')
+  const [sku, setSku] = useState<string>('')
+  const [bodega, setBodega] = useState<string>('Central')
 
   // Foco automático al montar la pantalla
   useEffect(() => {
-    inputUnidadRef.current?.focus()
+    inputSkuRef.current?.focus()
   }, [])
 
-  // ── Uso 2: contador de intentos silencioso (sin re-render) ───────────
-  const intentosSilenciosRef = useRef<number>(0)
-  const [ultimaConexion, setUltimaConexion] = useState<string>('—')
+  // ── Uso 2: contador de conteos silencioso (sin re-render) ───────────
+  const conteosSilenciosRef = useRef<number>(0)
+  const [ultimoConteo, setUltimoConteo] = useState<string>('—')
 
-  function intentarConexion() {
-    intentosSilenciosRef.current += 1   // muta sin re-render
-    // Solo actualizamos el estado (y disparamos re-render) al conectar
-    setUltimaConexion(
-      `${unidad || 'unidad'}:${validador} — intento #${intentosSilenciosRef.current}`
+  function registrarConteo() {
+    conteosSilenciosRef.current += 1   // muta sin re-render
+    // Solo actualizamos el estado (y disparamos re-render) al registrar
+    setUltimoConteo(
+      `${sku || 'SKU'} · ${bodega} — conteo #${conteosSilenciosRef.current}`
     )
   }
 
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Configurar Enlace de Unidad</Text>
+      <Text style={styles.titulo}>Registrar Conteo de Inventario</Text>
 
       <View style={styles.formulario}>
-        <Text style={styles.etiqueta}>Código de Unidad</Text>
+        <Text style={styles.etiqueta}>SKU del producto</Text>
         <TextInput
-          ref={inputUnidadRef}
+          ref={inputSkuRef}
           style={styles.input}
-          value={unidad}
-          onChangeText={setUnidad}
-          placeholder="PLQ-1001"
+          value={sku}
+          onChangeText={setSku}
+          placeholder="SKU-1001"
           placeholderTextColor="#aaa"
           autoCapitalize="none"
           returnKeyType="next"
-          onSubmitEditing={() => inputValidadorRef.current?.focus()}
+          onSubmitEditing={() => inputBodegaRef.current?.focus()}
         />
 
-        <Text style={styles.etiqueta}>Validador / Estación</Text>
+        <Text style={styles.etiqueta}>Bodega</Text>
         <TextInput
-          ref={inputValidadorRef}
+          ref={inputBodegaRef}
           style={styles.input}
-          value={validador}
-          onChangeText={setValidador}
-          placeholder="03"
+          value={bodega}
+          onChangeText={setBodega}
+          placeholder="Central"
           placeholderTextColor="#aaa"
-          keyboardType="number-pad"
           returnKeyType="done"
         />
       </View>
 
       <Pressable
         style={({ pressed }) => [styles.boton, styles.botonActivo, pressed && { opacity: 0.75 }]}
-        onPress={intentarConexion}
+        onPress={registrarConteo}
       >
-        <Text style={styles.textoBoton}>Conectar</Text>
+        <Text style={styles.textoBoton}>Registrar conteo</Text>
       </Pressable>
 
-      <Text style={styles.detalle}>Último intento: {ultimaConexion}</Text>
+      <Text style={styles.detalle}>Último conteo: {ultimoConteo}</Text>
       <Text style={styles.detalle}>
-        (los reintentos silenciosos no causan re-renders)
+        (los conteos silenciosos no causan re-renders)
       </Text>
     </View>
   )
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   formulario: {
-    width: '100%', 
-    gap: 12,       
+    width: '100%',
+    gap: 12,
   },
 })

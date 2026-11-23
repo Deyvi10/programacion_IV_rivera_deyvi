@@ -1,17 +1,20 @@
-let unidad: string = "Autobus";
+// Control de Inventario — Deyvi Rivera
+// Evaluación de productos según antigüedad y capacidad de bodega
+
+let producto: string = "Ferreteria";
 let antiguedad: number = 5;
 let capacidad: number = 85;
 
-if (unidad === "Autobus" || unidad === "Metro" || unidad === "Trolebus") {
+if (producto === "Ferreteria" || producto === "Papeleria" || producto === "Limpieza") {
     if (antiguedad >= 18 && capacidad >= 80) {
-        console.log(`${unidad} es un transporte con alta capacidad pero antiguo.`);
+        console.log(`${producto} es un producto con alta rotación pero antiguo.`);
     } else if (antiguedad < 18 && capacidad >= 80) {
-        console.log(`${unidad} es un transporte nuevo y con alta capacidad.`);
+        console.log(`${producto} es un producto nuevo y con alta rotación.`);
     } else if (antiguedad >= 18 && capacidad < 80) {
-        console.log(`${unidad} es un transporte antiguo y de poca capacidad.`);
+        console.log(`${producto} es un producto antiguo y de poca rotación.`);
     } else {
-        console.log(`${unidad} es un transporte nuevo pero de poca capacidad.`);
+        console.log(`${producto} es un producto nuevo pero de poca rotación.`);
     }
 } else {
-    console.log("Unidad de transporte desconocida.");
+    console.log("Categoría de producto desconocida.");
 }

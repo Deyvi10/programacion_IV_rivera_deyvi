@@ -1,48 +1,49 @@
-const val MAX_ESTACIONES = 10
+// Control de Inventario — Deyvi Rivera
+const val MAX_BODEGAS = 10
 
 fun main() {
-    var pasajeros = 100
-    println(pasajeros)
-    println("Autor: Karla Mosquera")
-    pasajeros = 80 
-    println("pasajeros")
-    println(pasajeros)
+    var productos = 100
+    println(productos)
+    println("Autor: Deyvi Rivera")
+    productos = 80 
+    println("productos")
+    println(productos)
     println("Tipos de variables en Kotlin")
     println("Tipo Integer o entero")
-    var ruta: Int = 14
-    var unidades : Int = 10
-    println("ruta : $ruta")
-    println("unidades : $unidades") 
+    var sku: Int = 14
+    var stock: Int = 10
+    println("sku : $sku")
+    println("stock : $stock")
 
     println("Tipo LONG")
-    var validaciones: Long = 9000000000000L
-    println("validaciones : $validaciones")
+    var movimientos: Long = 9000000000000L
+    println("movimientos : $movimientos")
 
     println("Tipo float")
-    var combustible : Float = 45.5f
-    println("combustible : $combustible")
+    var peso: Float = 45.5f
+    println("peso : $peso")
 
     println("Tipo double")
-    var distancia : Double = 45.5
-    println("distancia : $distancia")
+    var valorizacion: Double = 45.5
+    println("valorizacion : $valorizacion")
 
     println("Tipo char un caracter")
-    var codigo : Char = 'K'
-    println("codigo : $codigo")
+    var categoria: Char = 'A'
+    println("categoria : $categoria")
 
     println("Tipo String")
-    var nombreUnidad : String = "Trole-01"
-    var corredor : String = "Corredor Norte"
-    println("nombreUnidad : $nombreUnidad, corredor : $corredor")
+    var nombreProducto: String = "SKU-001"
+    var bodega: String = "Bodega Central"
+    println("nombreProducto : $nombreProducto, bodega : $bodega")
 
     println("Tipo Boolean")
-    var unidadActiva : Boolean = true
-    println("unidadActiva : $unidadActiva")
+    var productoActivo: Boolean = true
+    println("productoActivo : $productoActivo")
 
     println("Val CONST VAR")
-    val operador = "Karla Mosquera"
-    var unidadesDisponibles = 10
-    println("operador : $operador")
-    println("unidadesDisponibles : $unidadesDisponibles")
-    println("MAX_ESTACIONES : $MAX_ESTACIONES")
+    val responsable = "Deyvi Rivera"
+    var stockDisponible = 10
+    println("responsable : $responsable")
+    println("stockDisponible : $stockDisponible")
+    println("MAX_BODEGAS : $MAX_BODEGAS")
 }

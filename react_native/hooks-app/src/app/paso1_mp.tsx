@@ -1,56 +1,61 @@
+// Control de Inventario — Deyvi Rivera
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 export function Paso1mp() {
   const [intentos, setIntentos] = useState<number>(0)
-  const [conectado, setConectado] = useState<boolean>(false)
+  const [conciliado, setConciliado] = useState<boolean>(false)
   const [mensajeError, setMensajeError] = useState<string>('')
 
   function manejarReintento() {
-    if (conectado) return
+    if (conciliado) return
     const nuevoIntento = intentos + 1
     setIntentos(nuevoIntento)
-    // Simula éxito al cuarto intento
+    // Simula éxito al cuarto intento de conteo
     if (nuevoIntento >= 4) {
-      setConectado(true)
+      setConciliado(true)
+      setMensajeError('')
+    } else {
+      setMensajeError('Diferencia de existencias detectada')
     }
   }
 
   function reiniciar() {
     setIntentos(0)
-    setConectado(false)
+    setConciliado(false)
+    setMensajeError('')
   }
 
-  const estadoTexto = conectado
-    ? '✓ Conectado a Trole-01'
+  const estadoTexto = conciliado
+    ? '✓ Conciliado con SKU-1001'
     : `Intento ${intentos} de 3 fallido`
 
-  const colorEstado = conectado ? '#2e7d32' : '#c62828'
+  const colorEstado = conciliado ? '#2e7d32' : '#c62828'
 
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Conexión con Unidad</Text>
+      <Text style={styles.titulo}>Conciliación de Inventario</Text>
 
       <View style={[styles.tarjeta, { borderColor: colorEstado }]}>
         <Text style={[styles.estado, { color: colorEstado }]}>
           {estadoTexto}
         </Text>
-        <Text style={styles.detalle}>Trole-01 · Terminal Carcelén - Validador 03</Text>
+        <Text style={styles.detalle}>Laptop T14 · Bodega Central · Conteo 03</Text>
       </View>
       <Text style={[styles.detalle, { color: colorEstado }]}>{
-        intentos > 0 && !conectado? 'Error en Enlace' : ''}</Text>
+        intentos > 0 && !conciliado ? mensajeError : ''}</Text>
 
       <Pressable
         style={({ pressed }) => [
           styles.boton,
-          conectado ? styles.botonDeshabilitado : styles.botonActivo,
-          pressed && !conectado && { opacity: 0.75 },
+          conciliado ? styles.botonDeshabilitado : styles.botonActivo,
+          pressed && !conciliado && { opacity: 0.75 },
         ]}
         onPress={manejarReintento}
-        disabled={conectado}
+        disabled={conciliado}
       >
         <Text style={styles.textoBoton}>
-          {conectado ? 'Conectado' : 'Reintentar enlace'}
+          {conciliado ? 'Conciliado' : 'Repetir conteo'}
         </Text>
       </Pressable>
 

@@ -1,3 +1,4 @@
+// Control de Inventario — Deyvi Rivera
 // app/index.tsx — agrega la función Paso4
 import { useWindowDimensions, useColorScheme } from 'react-native'
 import { StyleSheet, Text, View } from 'react-native'
@@ -19,17 +20,17 @@ export function Paso4mp() {
   const columnas = width > 500 ? 2 : 1
   const anchoTarjeta = (width - 48 - (columnas - 1) * 12) / columnas
 
-  const unidades = [
-    { nombre: 'Trole-01',   codigo: 'PLQ-1001', estado: 'activo' },
-    { nombre: 'Bus-05',     codigo: 'PLQ-2005', estado: 'activo' },
-    { nombre: 'Metro-02',   codigo: 'MET-002',  estado: 'timeout' },
-    { nombre: 'Ecovía-01',  codigo: 'ECO-3001', estado: 'activo' },
+  const productos = [
+    { nombre: 'Laptop T14',       codigo: 'SKU-1001', estado: 'disponible' },
+    { nombre: 'Silla Ergonómica', codigo: 'SKU-2005', estado: 'disponible' },
+    { nombre: 'Papel A4 · Caja',  codigo: 'SKU-3002', estado: 'stock_bajo' },
+    { nombre: 'Monitor 24 pulg.', codigo: 'SKU-4001', estado: 'disponible' },
   ]
 
   return (
     <View style={[styles.contenedor, { backgroundColor: colores.fondo }]}>
       <Text style={[styles.titulo, { color: colores.texto }]}>
-        Inventario de Flota
+        Inventario de Bodega
       </Text>
 
       {/* Información de pantalla */}
@@ -45,29 +46,29 @@ export function Paso4mp() {
         </Text>
       </View>
 
-      {/* Grid de unidades con columnas adaptativas */}
+      {/* Grid de productos con columnas adaptativas */}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
-        {unidades.map(unidad => (
+        {productos.map(producto => (
           <View
-            key={unidad.nombre}
+            key={producto.nombre}
             style={[styles.tarjeta, {
               backgroundColor: colores.tarjeta,
               borderColor: colores.borde,
               width: anchoTarjeta,
             }]}
           >
-            <Text style={[styles.nombreServidor, { color: colores.texto }]}>
-              {unidad.nombre}
+            <Text style={[styles.nombreProducto, { color: colores.texto }]}>
+              {producto.nombre}
             </Text>
-            <Text style={[styles.ipServidor, { color: colores.detalle }]}>
-              {unidad.codigo}
+            <Text style={[styles.codigoProducto, { color: colores.detalle }]}>
+              {producto.codigo}
             </Text>
             <Text style={{
               fontSize: 12,
               fontWeight: '600',
-              color: unidad.estado === 'activo' ? '#2e7d32' : '#c62828',
+              color: producto.estado === 'disponible' ? '#2e7d32' : '#c62828',
             }}>
-              {unidad.estado.toUpperCase()}
+              {producto.estado.replace('_', ' ').toUpperCase()}
             </Text>
           </View>
         ))}
@@ -161,8 +162,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   formulario: {
-    width: '100%', 
-    gap: 12,       
+    width: '100%',
+    gap: 12,
   },
   nota: {
     width: '100%',
@@ -176,13 +177,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
   },
-  nombreServidor: {
+  nombreProducto: {
     width: '100%',
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
   },
-  ipServidor: {
+  codigoProducto: {
     width: '100%',
     paddingVertical: 14,
     borderRadius: 8,

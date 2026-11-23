@@ -28,7 +28,7 @@ export function UsuarioProvider({
  children,
 }: UsuarioProviderProps) {
  const [usuario, setUsuario] = useState<string>(
-   'Karla'
+   'Deyvi'
  );
  const [cargo, setCargo] = useState<string>(
    'Programador'

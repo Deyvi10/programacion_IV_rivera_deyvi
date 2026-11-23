@@ -1,153 +1,156 @@
+// Control de Inventario — Deyvi Rivera
+// Condicionales simples, dobles, múltiples, anidados y compuestos aplicados al stock
+
 //Condicionales
 
 let nivel : number = 5;
 
 if (nivel < 5) {
-    console.log("El autobús puede iniciar la ruta");
+    console.log("El producto puede ser registrado en el inventario");
 }
 
 //Condicionales dobles
 if (nivel >= 16) {
-    console.log("El autobús puede realizar mantenimiento mayor");
+    console.log("El producto puede recibir reposición mayor");
 } else {
-    console.log("El autobús no puede realizar mantenimiento mayor");
+    console.log("El producto no puede recibir reposición mayor");
 }
 
 //Condicionales multiples
 
 if (nivel >= 16) {
-    console.log("El autobús puede realizar mantenimiento mayor");
+    console.log("El producto puede recibir reposición mayor");
 } else if (nivel >= 8) {
-    console.log("El autobús puede realizar revisión técnica");
+    console.log("El producto puede recibir revisión de inventario");
 } else {
-    console.log("El autobús no puede realizar revisión técnica ni mantenimiento mayor");
+    console.log("El producto no puede recibir revisión de inventario ni reposición mayor");
 }
 
 //Condicional Anidados
 
 if (nivel >= 16) {
-    console.log("El autobús puede realizar mantenimiento mayor");
+    console.log("El producto puede recibir reposición mayor");
 } else {
     if (nivel >= 8) {
-        console.log("El autobús puede realizar revisión técnica");
+        console.log("El producto puede recibir revisión de inventario");
     } else {
-        console.log("El autobús no puede realizar revisión técnica ni mantenimiento mayor");
+        console.log("El producto no puede recibir revisión de inventario ni reposición mayor");
     }
 }
 
 //Condicional if con operador logico
 
 nivel = -20;
-let poder: number = 25;
+let demanda: number = 25;
 
-if (nivel >= 8 && nivel < 16 && poder >= 20) {
-    console.log("El autobús puede realizar revisión técnica");
+if (nivel >= 8 && nivel < 16 && demanda >= 20) {
+    console.log("El producto puede recibir reposición programada");
 
 } else if (nivel >= 16) {
-    console.log("El autobús puede realizar mantenimiento mayor");
+    console.log("El producto puede recibir reposición mayor");
 
 } else {
-    console.log("El autobús no puede realizar revisión técnica ni mantenimiento mayor");
+    console.log("El producto no puede recibir revisión de inventario ni reposición mayor");
 }
 
 //Condicional if con operador logico or
 
 nivel = 5;
-poder = 56;
+demanda = 56;
 
-if (nivel >= 8 || poder >= 20) {
-    console.log("El autobús puede realizar revisión técnica");
+if (nivel >= 8 || demanda >= 20) {
+    console.log("El producto puede recibir revisión de inventario");
 
 } else if (nivel >= 16) {
-    console.log("El autobús puede realizar mantenimiento mayor");
+    console.log("El producto puede recibir reposición mayor");
 
 } else {
-    console.log("El autobús no puede realizar revisión técnica ni mantenimiento mayor");
+    console.log("El producto no puede recibir revisión de inventario ni reposición mayor");
 }
 
 
 /*Ejercicio en clase
 
-Desarrolla un programa en TypeScript que determine si un operador puede participar en el sistema de transporte. 
-Para ingresar, debe tener al menos 8 años de experiencia, ser mayor o igual a 12 años y no estar suspendido. 
-Si cumple estos requisitos, verifica mediante condicionales anidados que su unidad tenga nivel mínimo 40, 
-combustible mayor a 0 y sea de tipo Diésel, Eléctrico o Gas. Finalmente, clasifica la unidad como Maestro 
-(nivel ≥ 80, capacidad ≥ 90 y combustible ≥ 100), Élite (nivel ≥ 60 y capacidad ≥ 75 o velocidad ≥ 80) o 
-Avanzado (nivel ≥ 40, capacidad ≥ 50 y combustible > 0). Utiliza if, else if, else y operadores &&, || y !, 
+Desarrolla un programa en TypeScript que determine si un proveedor puede abastecer la bodega.
+Para ingresar, debe tener al menos 8 años de experiencia, ser mayor o igual a 12 años y no estar suspendido.
+Si cumple estos requisitos, verifica mediante condicionales anidados que su producto tenga nivel mínimo 40,
+precio mayor a 0 y sea de tipo Ferretería, Papelería o Limpieza. Finalmente, clasifica el producto como Maestro
+(nivel ≥ 80, capacidad ≥ 90 y precio ≥ 100), Élite (nivel ≥ 60 y capacidad ≥ 75 o rotación ≥ 80) o
+Avanzado (nivel ≥ 40, capacidad ≥ 50 y precio > 0). Utiliza if, else if, else y operadores &&, || y !,
 mostrando un mensaje cuando no se cumplan los requisitos.*/
 
-type TipoUnidad = "Diesel" | "Electrico" | "Hibrido" | "Gas";
+type CategoriaProducto = "Ferreteria" | "Papeleria" | "Limpieza" | "Electronicos";
 
-interface Operador {
+interface Proveedor {
   nombre: string;
   edad: number;
   experiencia: number;
   suspendido: boolean;
 }
 
-interface Unidad {
+interface Producto {
   nombre: string;
-  tipo: TipoUnidad;
+  tipo: CategoriaProducto;
   nivel: number;
-  combustible: number;
+  precio: number;
   capacidad: number;
-  velocidad: number;
+  rotacion: number;
 }
 
-const operador: Operador = {
-  nombre: "Carlos",
+const proveedor: Proveedor = {
+  nombre: "Deyvi Rivera",
   edad: 35,
   experiencia: 8,
   suspendido: false
 };
 
-const unidad: Unidad = {
-  nombre: "Unidad 01",
-  tipo: "Diesel",
+const producto: Producto = {
+  nombre: "Taladro 01",
+  tipo: "Ferreteria",
   nivel: 85,
-  combustible: 120,
+  precio: 120,
   capacidad: 95,
-  velocidad: 78
+  rotacion: 78
 };
 
 if (
-  operador.experiencia >= 8 &&
-  operador.edad >= 12 &&
-  !operador.suspendido
+  proveedor.experiencia >= 8 &&
+  proveedor.edad >= 12 &&
+  !proveedor.suspendido
 ) {
-  console.log("Operador autorizado");
+  console.log("Proveedor autorizado");
 
   if (
-    unidad.nivel >= 40 &&
-    unidad.combustible > 0 &&
+    producto.nivel >= 40 &&
+    producto.precio > 0 &&
     (
-      unidad.tipo === "Diesel" ||
-      unidad.tipo === "Electrico" ||
-      unidad.tipo === "Gas"
+      producto.tipo === "Ferreteria" ||
+      producto.tipo === "Papeleria" ||
+      producto.tipo === "Limpieza"
     )
   ) {
-    console.log("Unidad autorizada");
+    console.log("Producto autorizado");
 
     if (
-      unidad.nivel >= 80 &&
-      unidad.capacidad >= 90 &&
-      unidad.combustible >= 100
+      producto.nivel >= 80 &&
+      producto.capacidad >= 90 &&
+      producto.precio >= 100
     ) {
       console.log("Categoría Maestro");
 
     } else if (
-      unidad.nivel >= 60 &&
+      producto.nivel >= 60 &&
       (
-        unidad.capacidad >= 75 ||
-        unidad.velocidad >= 80
+        producto.capacidad >= 75 ||
+        producto.rotacion >= 80
       )
     ) {
       console.log("Categoría Élite");
 
     } else if (
-      unidad.nivel >= 40 &&
-      unidad.capacidad >= 50 &&
-      unidad.combustible > 0
+      producto.nivel >= 40 &&
+      producto.capacidad >= 50 &&
+      producto.precio > 0
     ) {
       console.log("Categoría Avanzado");
 
@@ -156,9 +159,9 @@ if (
     }
 
   } else {
-    console.log("La unidad no cumple los requisitos");
+    console.log("El producto no cumple los requisitos");
   }
 
 } else {
-  console.log("Operador no autorizado");
+  console.log("Proveedor no autorizado");
 }

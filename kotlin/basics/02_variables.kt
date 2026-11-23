@@ -3,7 +3,7 @@ const val MAX_PORTALES = 10
 fun main(){
     var energia = 100
     println(energia)
-    println("Autor: Karla Mosquera")
+    println("Autor: Deyvi Rivera")
     energia = 80 
     println("energia")
     println(energia)

@@ -1,6 +1,6 @@
 # Programación IV
 
-**Autor:** _Karla Mosquera
+**Autor:** _Deyvi Rivera
 **Materia:** Programación IV
 **Periodo:** 2026
 
@@ -56,3 +56,11 @@ programacion-iv/
 - Ignorar carpetas generadas como `build/` y `node_modules/`.
 - Hacer commits pequeños y con mensajes descriptivos.
 -
+---
+
+## Créditos
+
+Los ejercicios provienen del trabajo conjunto con **Karla Mosquera**
+(repositorio original: https://github.com/Karlamos/programacion_IV_Mosquera_Karla).
+Los ejercicios `_mp` fueron adaptados al tema **Control de Inventario** por
+**Deyvi Rivera**. Consulta [CREDITOS.md](CREDITOS.md) para el detalle completo.

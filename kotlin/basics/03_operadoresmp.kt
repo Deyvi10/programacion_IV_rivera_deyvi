@@ -1,28 +1,29 @@
+// Control de Inventario — Deyvi Rivera
 fun main() {
     println("Operadores")
     println("Operadores Aritmeticos")
 
-    var pasajerosRuta1: Double = 10.50
-    var pasajerosRuta2: Double = 5.50
-    val suma: Double = pasajerosRuta1 + pasajerosRuta2
+    var stockBodega1: Double = 10.50
+    var stockBodega2: Double = 5.50
+    val suma: Double = stockBodega1 + stockBodega2
 
-    println("Suma +: $pasajerosRuta1 + $pasajerosRuta2 = ${pasajerosRuta1 + pasajerosRuta2}")
-    println("Suma +: $pasajerosRuta1 + $pasajerosRuta2 = $suma")
-    println("Resta -: $pasajerosRuta1 - $pasajerosRuta2 = ${pasajerosRuta1 - pasajerosRuta2}")
-    println("Multiplicacion *: $pasajerosRuta1 * $pasajerosRuta2 = ${pasajerosRuta1 * pasajerosRuta2}")
-    println("Division /: $pasajerosRuta1 / $pasajerosRuta2 = ${pasajerosRuta1 / pasajerosRuta2}")
-    println("Residuo %: $pasajerosRuta1 % $pasajerosRuta2 = ${pasajerosRuta1 % pasajerosRuta2}")
+    println("Suma +: $stockBodega1 + $stockBodega2 = ${stockBodega1 + stockBodega2}")
+    println("Suma +: $stockBodega1 + $stockBodega2 = $suma")
+    println("Resta -: $stockBodega1 - $stockBodega2 = ${stockBodega1 - stockBodega2}")
+    println("Multiplicacion *: $stockBodega1 * $stockBodega2 = ${stockBodega1 * stockBodega2}")
+    println("Division /: $stockBodega1 / $stockBodega2 = ${stockBodega1 / stockBodega2}")
+    println("Residuo %: $stockBodega1 % $stockBodega2 = ${stockBodega1 % stockBodega2}")
 
     println("Prioridades de los operadores aritmeticos")
     println("1()")
     println("2 *,/,%")
     println("3+,-")
-    val validaciones = 10 + 3 * 5 + 5
-    println("Validaciones: $validaciones")
-    val aforo = 15 / 5 * 5
-    println("Aforo : $aforo")
-    val combustible = 100 + 20 / 4 * 3 - 10 % 3
-    println("combustible : $combustible")
+    val movimientos = 10 + 3 * 5 + 5
+    println("Movimientos: $movimientos")
+    val stockTotal = 15 / 5 * 5
+    println("Stock total : $stockTotal")
+    val valorizacion = 100 + 20 / 4 * 3 - 10 % 3
+    println("valorizacion : $valorizacion")
 
     println("Operadores de Comparación")
     println("Igual a == ${10 == 10}")

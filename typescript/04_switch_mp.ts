@@ -1,61 +1,64 @@
-type UnidadTransporte =
-    | "Autobus"
-    | "Trolebus"
-    | "Metro"
-    | "Taxi"
-    | "Bicicleta"
+// Control de Inventario — Deyvi Rivera
+// Selector de categorías de productos con switch
 
-let personaje: UnidadTransporte = "Autobus";
+type CategoriaProducto =
+    | "Ferreteria"
+    | "Papeleria"
+    | "Limpieza"
+    | "Electronicos"
+    | "Alimentos";
 
-switch (personaje) {
-    case "Autobus":
-        console.log("El autobus cubre rutas urbanas");
+let categoria: CategoriaProducto = "Ferreteria";
+
+switch (categoria) {
+    case "Ferreteria":
+        console.log("La ferretería se almacena en la bodega general");
         break;
-    case "Trolebus":
-        console.log("El trolebus circula por carriles exclusivos");             
+    case "Papeleria":
+        console.log("La papelería se organiza por presentación y peso");
         break;
-    case "Taxi":
-        console.log("El taxi ofrece servicio personalizado");
+    case "Limpieza":
+        console.log("La limpieza requiere control de caducidad");
         break;
-    case "Metro":
-        console.log("El metro es un transporte subterraneo rapido");
+    case "Electronicos":
+        console.log("Los electrónicos requieren control de garantía");
         break;
-    case "Bicicleta":
-        console.log("La bicicleta es un transporte ecologico");
+    case "Alimentos":
+        console.log("Los alimentos requieren control de temperatura");
         break;
     default:
-        console.log("Unidad de transporte desconocida");
+        console.log("Categoría de producto desconocida");
 }
 
 
-type TiposUnidad = "Autobus" | "Metro" | "Bicicleta";
+type TiposProducto = "Ferreteria" | "Papeleria" | "Limpieza";
 
-let jedi: TiposUnidad = "Autobus";
-let nivelFuerza: number = 100;
-let tieneSable : boolean = true;
+let producto: TiposProducto = "Ferreteria";
+let nivelStock: number = 100;
+let tieneProveedor : boolean = true;
 
-switch (jedi) { 
-    case "Autobus":
-        if (nivelFuerza >= 80 && tieneSable) {
-            console.log("El autobus cuenta con alta capacidad");
+switch (producto) {
+    case "Ferreteria":
+        if (nivelStock >= 80 && tieneProveedor) {
+            console.log("La ferretería cuenta con alto stock");
         } else {
-            console.log("El autobus no cuenta con alta capacidad");
+            console.log("La ferretería no cuenta con alto stock");
         }
         break;
-    case "Metro":
-        if (nivelFuerza >= 90 && tieneSable) {
-            console.log("El metro cuenta con alta capacidad");
+    case "Papeleria":
+        if (nivelStock >= 90 && tieneProveedor) {
+            console.log("La papelería cuenta con alto stock");
         } else {
-            console.log("El metro no cuenta con alta capacidad");
+            console.log("La papelería no cuenta con alto stock");
         }
         break;
-    case "Bicicleta":
-        if (nivelFuerza >= 95 && tieneSable) {
-            console.log("La bicicleta cuenta con alta capacidad");
+    case "Limpieza":
+        if (nivelStock >= 95 && tieneProveedor) {
+            console.log("La limpieza cuenta con alto stock");
         } else {
-            console.log("La bicicleta no cuenta con alta capacidad");
+            console.log("La limpieza no cuenta con alto stock");
         }
         break;
     default:
-        console.log("Unidad de transporte desconocida");
+        console.log("Categoría de producto desconocida");
 }

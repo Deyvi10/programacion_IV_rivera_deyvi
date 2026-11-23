@@ -1,66 +1,67 @@
+// Control de Inventario — Deyvi Rivera
 // app/index.tsx — agrega la función Paso2
 import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-type EstadoPing = 'pinging' | 'ok' | 'timeout' | 'inactivo'
+type EstadoLectura = 'sincronizando' | 'ok' | 'sin_respuesta' | 'inactivo'
 
 export function Paso2mp() {
-  const [latencia, setLatencia] = useState<number | null>(null)
-  const [estado, setEstado] = useState<EstadoPing>('inactivo')
+  const [lectura, setLectura] = useState<number | null>(null)
+  const [estado, setEstado] = useState<EstadoLectura>('inactivo')
   const [activo, setActivo] = useState<boolean>(false)
   const [ciclos, setCiclos] = useState<number>(0)
-  const [paquetesPerdidos, setPaquetesPerdidos] = useState<number>(0);
+  const [lecturasFallidas, setLecturasFallidas] = useState<number>(0);
 
   useEffect(() => {
     if (!activo) return   // no arrancar el intervalo si el monitoreo está detenido
 
     const intervalo = setInterval(() => {
-      setEstado('pinging')
+      setEstado('sincronizando')
 
-      // Simula latencia de red/GPS: número aleatorio entre 10 ms y 200 ms
-      // con un 15 % de probabilidad de timeout
+      // Simula lectura de stock: entre 10 y 200 unidades
+      // con un 15 % de probabilidad de que la lectura falle
       setTimeout(() => {
         const falla = Math.random() < 0.15
         if (falla) {
-          setLatencia(null)
-          setEstado('timeout')
-          setPaquetesPerdidos(p => p + 1) 
+          setLectura(null)
+          setEstado('sin_respuesta')
+          setLecturasFallidas(p => p + 1)
         } else {
-          const ms = Math.floor(Math.random() * 190) + 10
-          setLatencia(ms)
+          const unds = Math.floor(Math.random() * 190) + 10
+          setLectura(unds)
           setEstado('ok')
         }
         setCiclos(c => c + 1)
       }, 400)
-    }, 500) 
+    }, 500)
 
     // ← función de limpieza: cancela el intervalo
     return () => clearInterval(intervalo)
   }, [activo])   // se re-ejecuta cuando 'activo' cambia
 
-  const colorEstado: Record<EstadoPing, string> = {
-    pinging:  '#1565c0',
+  const colorEstado: Record<EstadoLectura, string> = {
+    sincronizando: '#1565c0',
     ok:       '#2e7d32',
-    timeout:  '#c62828',
+    sin_respuesta: '#c62828',
     inactivo: '#757575',
   }
-  const porcentajePerdida =
-    ciclos > 0 ? (paquetesPerdidos / ciclos * 100).toFixed(1) + '%' : '0.0%'
+  const porcentajeFallos =
+    ciclos > 0 ? (lecturasFallidas / ciclos * 100).toFixed(1) + '%' : '0.0%'
 
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Monitor GPS — Trole-01</Text>
+      <Text style={styles.titulo}>Monitoreo de Stock — SKU-1001</Text>
 
       <View style={styles.tarjeta}>
         <Text style={[styles.etiqueta, { color: colorEstado[estado] }]}>
           {estado.toUpperCase()}
         </Text>
-        <Text style={styles.latencia}>
-          {latencia !== null ? `${latencia} ms` : '— ms'}
+        <Text style={styles.lectura}>
+          {lectura !== null ? `${lectura} unds.` : '— unds.'}
         </Text>
         <Text style={styles.ciclos}>Ciclos completados: {ciclos}</Text>
-        <Text style={styles.ciclos}>Paquetes perdidos: {paquetesPerdidos} ({porcentajePerdida})</Text>
-        <Text style={styles.detalle}>Trole-01 · PLQ-1001 · Validador 03</Text>
+        <Text style={styles.ciclos}>Lecturas fallidas: {lecturasFallidas} ({porcentajeFallos})</Text>
+        <Text style={styles.detalle}>Laptop T14 · Bodega Central · Conteo 03</Text>
       </View>
 
       <Pressable
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     color: '#1565c0',
     fontSize: 14,
   },
-  latencia: {
+  lectura: {
     color: '#18c015',
     fontSize: 15,
     fontWeight: '600',

@@ -1,19 +1,22 @@
+// Control de Inventario — Deyvi Rivera
+// Declaración de constantes y variables para el control de inventario
+
 //Constantes
 
 //Numerico
-const PI: number = 3.1416;
-console.log("PI:", PI);
+const STOCK_MINIMO: number = 15;
+console.log("STOCK MÍNIMO:", STOCK_MINIMO);
 
-const TARIFA_BASE: number = 15;
-console.log("TARIFA BASE:", TARIFA_BASE);
+const COSTO_UNITARIO_BASE: number = 15;
+console.log("COSTO UNITARIO BASE:", COSTO_UNITARIO_BASE);
 
 //Texto
-const SERVICIO_API: string = "apiService";
-console.log("NOMBRE DEL SERVICIO:", SERVICIO_API);
+const NOMBRE_BODEGA: string = "Bodega Central";
+console.log("NOMBRE DE LA BODEGA:", NOMBRE_BODEGA);
 
 //Booleano
-const ACTIVO: boolean = true;
-console.log("UNIDAD ACTIVA:", ACTIVO);
+const PRODUCTO_ACTIVO: boolean = true;
+console.log("PRODUCTO ACTIVO:", PRODUCTO_ACTIVO);
 
 //Variables
 
@@ -28,37 +31,37 @@ contador+=5;
 console.log(contador);
 contador=contador+3;
 console.log(contador);
-let chofer: string="Juan";
-let caducado: boolean=false;
-console.log(chofer);
-console.log(caducado);
+let responsable: string="Deyvi Rivera";
+let agotado: boolean=false;
+console.log(responsable);
+console.log(agotado);
 
-let ruta : string[]=["TERMINAL","CENTRO","UNIVERSIDAD"];
-console.log(ruta);
+let categorias: string[]=["Ferretería","Papelería","Limpieza"];
+console.log(categorias);
 
-let busAsignado: string | null = null;
+let proveedorAsignado: string | null = null;
 
-let paradaSiguiente: string | undefined;
+let siguienteMovimiento: string | undefined;
 
-let experienciaAcumulada: bigint= 9876543222433667n;
+let valorizacionAcumulada: bigint= 9876543222433667n;
 
-//tipo symbol 
-let bus1: symbol=Symbol("Bus01");
-console.log(bus1.description);
-let bus2: symbol=Symbol("Bus01");
-console.log(bus2.description);  
-console.log(bus1==bus2); 
+//tipo symbol
+let producto1: symbol=Symbol("SKU001");
+console.log(producto1.description);
+let producto2: symbol=Symbol("SKU001");
+console.log(producto2.description);
+console.log(producto1==producto2);
 
 
-let unidad: {
-    nombre: string;
-    nivel: number;
-    vida: number;
-    esLegendario: boolean;
+let producto: {
+    sku: string;
+    stock: number;
+    vidaUtil: number;
+    esCritico: boolean;
 }={
-    nombre:"Bus01",
-    nivel: 5,
-    vida: 100,
-    esLegendario: false
+    sku:"SKU001",
+    stock: 5,
+    vidaUtil: 100,
+    esCritico: false
 };
-console.log(unidad);
+console.log(producto);

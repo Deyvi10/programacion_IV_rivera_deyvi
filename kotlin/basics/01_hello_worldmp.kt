@@ -1,3 +1,4 @@
+// Control de Inventario — Deyvi Rivera
 fun main() {
-    println("Flota de transporte público lista y en ruta 🚍")
+    println("Sistema de Control de Inventario listo para gestionar la bodega 📦")
 }
