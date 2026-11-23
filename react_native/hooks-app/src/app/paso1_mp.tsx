@@ -1,58 +1,67 @@
-// app/paso1_mp.tsx — primeros hooks aplicados al control de inventario
-import { useEffect, useState } from 'react'
+// Control de Inventario — Deyvi Rivera
+import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-// Paso 1 _mp: useState guarda el stock y useEffect ejecuta efectos.
-export default function Paso1Mp() {
-  const [stock, setStock] = useState<number>(25)
-  const [segundos, setSegundos] = useState<number>(0)
+export function Paso1mp() {
+  const [intentos, setIntentos] = useState<number>(0)
+  const [conciliado, setConciliado] = useState<boolean>(false)
+  const [mensajeError, setMensajeError] = useState<string>('')
 
-  // useEffect con cleanup: el intervalo se limpia al desmontar el componente.
-  useEffect(() => {
-    const id = setInterval(() => setSegundos((s) => s + 1), 1000)
-    return () => clearInterval(id)
-  }, [])
+  function manejarReintento() {
+    if (conciliado) return
+    const nuevoIntento = intentos + 1
+    setIntentos(nuevoIntento)
+    // Simula éxito al cuarto intento de conteo
+    if (nuevoIntento >= 4) {
+      setConciliado(true)
+      setMensajeError('')
+    } else {
+      setMensajeError('Diferencia de existencias detectada')
+    }
+  }
+
+  function reiniciar() {
+    setIntentos(0)
+    setConciliado(false)
+    setMensajeError('')
+  }
+
+  const estadoTexto = conciliado
+    ? '✓ Conciliado con SKU-1001'
+    : `Intento ${intentos} de 3 fallido`
+
+  const colorEstado = conciliado ? '#2e7d32' : '#c62828'
 
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Paso 1 _mp · Control de inventario</Text>
-      <Text style={styles.descripcion}>
-        useState guarda el stock del producto y useEffect controla el tiempo
-        transcurrido desde la última auditoría.
-      </Text>
+      <Text style={styles.titulo}>Conciliación de Inventario</Text>
 
-      <View style={styles.tarjeta}>
-        <Text style={styles.etiqueta}>Stock actual (useState)</Text>
-        <Text style={styles.valorGrande}>{stock} u.</Text>
-
-        <View style={styles.filaBotones}>
-          <Pressable
-            style={[styles.boton, styles.botonSecundario]}
-            onPress={() => setStock((s) => Math.max(0, s - 1))}
-          >
-            <Text style={styles.textoBotonSecundario}>−1 salida</Text>
-          </Pressable>
-
-          <Pressable
-            style={[styles.boton, styles.botonPrimario]}
-            onPress={() => setStock((s) => s + 1)}
-          >
-            <Text style={styles.textoBotonPrimario}>+1 entrada</Text>
-          </Pressable>
-        </View>
-
-        <Pressable style={styles.enlace} onPress={() => setStock(25)}>
-          <Text style={styles.textoEnlace}>Reiniciar stock</Text>
-        </Pressable>
-      </View>
-
-      <View style={styles.tarjeta}>
-        <Text style={styles.etiqueta}>Tiempo desde la auditoría (useEffect)</Text>
-        <Text style={styles.valorGrande}>{segundos}s</Text>
-        <Text style={styles.descripcion}>
-          El intervalo se limpia automáticamente al salir de la pantalla.
+      <View style={[styles.tarjeta, { borderColor: colorEstado }]}>
+        <Text style={[styles.estado, { color: colorEstado }]}>
+          {estadoTexto}
         </Text>
+        <Text style={styles.detalle}>Laptop T14 · Bodega Central · Conteo 03</Text>
       </View>
+      <Text style={[styles.detalle, { color: colorEstado }]}>{
+        intentos > 0 && !conciliado ? mensajeError : ''}</Text>
+
+      <Pressable
+        style={({ pressed }) => [
+          styles.boton,
+          conciliado ? styles.botonDeshabilitado : styles.botonActivo,
+          pressed && !conciliado && { opacity: 0.75 },
+        ]}
+        onPress={manejarReintento}
+        disabled={conciliado}
+      >
+        <Text style={styles.textoBoton}>
+          {conciliado ? 'Conciliado' : 'Repetir conteo'}
+        </Text>
+      </Pressable>
+
+      <Pressable style={styles.botonSecundario} onPress={reiniciar}>
+        <Text style={styles.textoSecundario}>Reiniciar simulación</Text>
+      </Pressable>
     </View>
   )
 }
@@ -60,75 +69,55 @@ export default function Paso1Mp() {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#f8fafc',
-    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+    backgroundColor: '#f5f5f5',
+    gap: 16,
   },
   titulo: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#0f172a',
-    marginBottom: 6,
-  },
-  descripcion: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: '#475569',
-    marginBottom: 14,
+    color: '#1a1a1a',
   },
   tarjeta: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
+    width: '100%',
     padding: 16,
-    marginBottom: 14,
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
+    borderRadius: 10,
+    borderWidth: 2,
+    backgroundColor: '#fff',
+    gap: 6,
   },
-  etiqueta: {
-    fontSize: 13,
+  estado: {
+    fontSize: 15,
     fontWeight: '600',
-    color: '#64748b',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
   },
-  valorGrande: {
-    fontSize: 40,
-    fontWeight: '700',
-    color: '#1e293b',
-    marginVertical: 8,
-  },
-  filaBotones: {
-    flexDirection: 'row',
-    gap: 10,
-    marginTop: 4,
+  detalle: {
+    fontSize: 13,
+    color: '#666',
   },
   boton: {
-    flex: 1,
-    paddingVertical: 12,
+    width: '100%',
+    paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
   },
-  botonPrimario: {
-    backgroundColor: '#2563eb',
+  botonActivo: {
+    backgroundColor: '#1565c0',
+  },
+  botonDeshabilitado: {
+    backgroundColor: '#a5d6a7',
+  },
+  textoBoton: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 15,
   },
   botonSecundario: {
-    backgroundColor: '#e2e8f0',
+    paddingVertical: 10,
   },
-  textoBotonPrimario: {
-    color: '#ffffff',
-    fontWeight: '700',
-    fontSize: 15,
-  },
-  textoBotonSecundario: {
-    color: '#1e293b',
-    fontWeight: '700',
-    fontSize: 15,
-  },
-  enlace: {
-    marginTop: 12,
-    alignItems: 'center',
-  },
-  textoEnlace: {
-    color: '#2563eb',
-    fontWeight: '600',
+  textoSecundario: {
+    color: '#1565c0',
+    fontSize: 14,
   },
 })
