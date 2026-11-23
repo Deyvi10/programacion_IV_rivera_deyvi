@@ -1,65 +1,64 @@
-// condicionales
+//Constantes
 
-let nivel: number = 5;
-if (nivel < 5){
-    console.log("El charmander puede evolucionar a Charmeleon");
-}
+//Numerico
+const PI: number = 3.1416;
+console.log("PI:", PI);
 
+const IVA: number = 15;
+console.log("I.V.A:", IVA);
 
-// condicionales dobles o dos caminos
-if (nivel >= 16) {
-    console.log("El charmander puede evolucionar a charizard");
-} else {
-     console.log("El charmander no puede evolucionar a charizard");
-}
+//Texto
+const SERVICIO_API: string = "apiService";
+console.log("NOMBRE DEL SERVICIO:", SERVICIO_API);
 
+//Booleano
+const ACTIVE: boolean = true;
+console.log("PRODUCTO ACTIVO:", ACTIVE);
 
-if (nivel >= 20) {
-    console.log("El charmander puede evolucionar a charizard");
-}else if(nivel >=8) {
-    console.log("El charmander puede evolucionar a charizard");
-} else {
-     console.log("El charmander no puede evolucionar a charizard");
-}
+//Variables
 
+//LET
+let contador: number=0;
+console.log(contador);
+contador=5;
+console.log(contador);
+contador++;
+console.log(contador);
+contador+=5;
+console.log(contador);
+contador=contador+3;
+console.log(contador);
+let alumno: string="Juan";
+let caducado: boolean=false;
+console.log(alumno);
+console.log(caducado);
 
+let equipo : string[]=["PIKACHU","CHARMANDER","BULBASAUR"];
+console.log(equipo);
 
-//condicion anidado
+let pokemonCapturado: string | null = null;
 
-if (nivel >= 20) {
-    console.log("El charmander puede evolucionar a charizard");
-}else {
-        if(nivel >=8) {
-    console.log("El charmander puede evolucionar a charizard");
-} else {
-     console.log("El charmander no puede evolucionar a charizard");
-}
-}
-    
-nivel = 15;
-let poder: number =25 
-//condicional if con operadores logicos
+let pokemonInicial: string | undefined;
 
-if (nivel >= 8 && nivel > 16 && poder >=20) {
-    console.log("El charmander puede evolucionar a charmeleon");
-}else if(nivel >=16) {
-    console.log("El charmander puede evolucionar a charizard");
-} else {
-     console.log("El charmander no puede evolucionar a charmeleon ni a charizard");
-}
+let experienciaAcumulada: bigint= 9876543222433667n;
 
-
-nivel = 5;
-poder =56;
-if (nivel >= 8 ||  poder >=20) {
-    console.log("El charmander puede evolucionar a charmeleon");
-}else if(nivel >=16) {
-    console.log("El charmander puede evolucionar a charizard");
-} else {
-     console.log("El charmander no puede evolucionar a charmeleon ni a charizard");
-}
+//tipo symbol 
+let pokemon1: symbol=Symbol("Pikachu");
+console.log(pokemon1.description);
+let pokemon2: symbol=Symbol("Pikachu");
+console.log(pokemon2.description);  
+console.log(pokemon1==pokemon2); 
 
 
-/*
-
-*/
+let pikachu: {
+    nombre: string;
+    nivel: number;
+    vida: number;
+    esLegendario: boolean;
+}={
+    nombre:"Pikachu",
+    nivel: 5,
+    vida: 100,
+    esLegendario: false
+};
+console.log(pikachu);
