@@ -1,7 +1,10 @@
-// ─── Paso 5 — Modal de confirmación (_mp: inventario) ───────────────
+// Control de Inventario — Deyvi Rivera
+// app/index.tsx — agrega al archivo existente
+import { useState, ReactNode } from 'react'
+import { Modal, Pressable, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
-import { useState } from 'react'
-import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+// ─── Paso 5 — Modal de confirmación ──────────────────────────────────
 
 interface ModalConfirmProps {
   visible: boolean
@@ -13,7 +16,7 @@ interface ModalConfirmProps {
   onCancelar: () => void
 }
 
-export function ModalConfirmMp({
+export function ModalConfirm({
   visible,
   titulo,
   mensaje,
@@ -29,22 +32,22 @@ export function ModalConfirmMp({
       animationType="fade"
       onRequestClose={onCancelar}
     >
-      <Pressable style={estilos5Mp.fondo} onPress={onCancelar}>
-        <Pressable style={estilos5Mp.dialogo} onPress={() => {}}>
-          <Text style={estilos5Mp.dialogoTitulo}>{titulo}</Text>
-          <Text style={estilos5Mp.dialogoMensaje}>{mensaje}</Text>
-          <View style={estilos5Mp.botones}>
+      <Pressable style={estilos5.fondo} onPress={onCancelar}>
+        <Pressable style={estilos5.dialogo} onPress={() => {}}>
+          <Text style={estilos5.dialogoTitulo}>{titulo}</Text>
+          <Text style={estilos5.dialogoMensaje}>{mensaje}</Text>
+          <View style={estilos5.botones}>
             <Pressable
-              style={[estilos5Mp.boton, estilos5Mp.botonCancelar]}
+              style={[estilos5.boton, estilos5.botonCancelar]}
               onPress={onCancelar}
             >
-              <Text style={estilos5Mp.textoCancelar}>{etiquetaCancelar}</Text>
+              <Text style={estilos5.textoCancelar}>{etiquetaCancelar}</Text>
             </Pressable>
             <Pressable
-              style={[estilos5Mp.boton, estilos5Mp.botonConfirmar]}
+              style={[estilos5.boton, estilos5.botonConfirmar]}
               onPress={onConfirmar}
             >
-              <Text style={estilos5Mp.textoConfirmar}>{etiquetaConfirmar}</Text>
+              <Text style={estilos5.textoConfirmar}>{etiquetaConfirmar}</Text>
             </Pressable>
           </View>
         </Pressable>
@@ -53,46 +56,41 @@ export function ModalConfirmMp({
   )
 }
 
-export function Paso5Mp() {
+export function Paso5mp() {
   const [modalVisible, setModalVisible] = useState(false)
   const [accionEjecutada, setAccionEjecutada] = useState<string | null>(null)
 
   return (
-    <SafeAreaView style={estilos5Mp.safeArea}>
-      <Text style={estilos5Mp.titulo}>Gestión de producto</Text>
-      <Text style={estilos5Mp.subtitulo}>Camiseta Sport · PRD-001</Text>
+    <SafeAreaView style={estilos5.safeArea}>
+      <Text style={estilos5.titulo}>Gestión de producto</Text>
+      <Text style={estilos5.subtitulo}>Laptop T14 · SKU-1001</Text>
 
-      <View style={estilos5Mp.infoProducto}>
-        <Text style={estilos5Mp.infoTexto}>Precio: $12.50</Text>
-        <Text style={estilos5Mp.infoTexto}>Stock actual: 25 unidades</Text>
-      </View>
-
-      <View style={estilos5Mp.acciones}>
+      <View style={estilos5.acciones}>
         <Pressable
-          style={estilos5Mp.botonAccion}
+          style={estilos5.botonAccion}
           onPress={() => {
             setAccionEjecutada(null)
             setModalVisible(true)
           }}
         >
-          <Text style={estilos5Mp.textoAccion}>Dar de baja del inventario</Text>
+          <Text style={estilos5.textoAccion}>Dar de baja el producto</Text>
         </Pressable>
       </View>
 
       {accionEjecutada && (
-        <View style={estilos5Mp.resultado}>
-          <Text style={estilos5Mp.textoResultado}>{accionEjecutada}</Text>
+        <View style={estilos5.resultado}>
+          <Text style={estilos5.textoResultado}>{accionEjecutada}</Text>
         </View>
       )}
 
-      <ModalConfirmMp
+      <ModalConfirm
         visible={modalVisible}
         titulo="Dar de baja producto"
-        mensaje={'¿Confirmas dar de baja Camiseta Sport?\nEl producto dejará de estar disponible para la venta.'}
+        mensaje={`¿Confirmas dar de baja Laptop T14 (SKU-1001)?\nSe descontarán 80 unidades del inventario disponible.`}
         etiquetaConfirmar="Dar de baja"
         onConfirmar={() => {
           setModalVisible(false)
-          setAccionEjecutada('Camiseta Sport dado de baja a las ' + new Date().toLocaleTimeString())
+          setAccionEjecutada('Producto SKU-1001 dado de baja a las ' + new Date().toLocaleTimeString())
         }}
         onCancelar={() => setModalVisible(false)}
       />
@@ -100,7 +98,7 @@ export function Paso5Mp() {
   )
 }
 
-const estilos5Mp = StyleSheet.create({
+const estilos5 = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#f0f4f8',
@@ -116,19 +114,8 @@ const estilos5Mp = StyleSheet.create({
     fontSize: 14,
     color: '#546e7a',
     marginTop: 4,
-    fontFamily: 'monospace',
-  },
-  infoProducto: {
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    padding: 16,
-    gap: 4,
-    marginTop: 16,
     marginBottom: 32,
-  },
-  infoTexto: {
-    fontSize: 14,
-    color: '#37474f',
+    fontFamily: 'monospace',
   },
   acciones: { gap: 12 },
   botonAccion: {
@@ -153,6 +140,7 @@ const estilos5Mp = StyleSheet.create({
     fontSize: 13,
     fontFamily: 'monospace',
   },
+  // Modal
   fondo: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.55)',

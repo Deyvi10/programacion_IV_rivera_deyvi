@@ -7,12 +7,13 @@ import { Paso1Simpson } from './paso1_simpson'
 import { Paso4 } from './paso4'
 import { Paso5 } from './paso5'
 import { Paso6 } from './paso6'
-import { Paso1Mp } from './paso1_mp'
-import { Paso2Mp } from './paso2_mp'
-import { Paso3Mp } from './paso3_mp'
-import { Paso4Mp } from './paso4_mp'
-import { Paso5Mp } from './paso5_mp'
-import { Paso6Mp } from './paso6_mp'
+import { Paso1Transporte } from './paso1_simpson_mp'
+import { Paso1mp } from './paso1_mp'
+import { Paso2mp } from './paso2_mp'
+import { Paso3mp } from './paso3_mp'
+import { Paso4mp } from './paso4_mp'
+import { Paso5mp } from './paso5_mp'
+import { Paso6mp } from './paso6_mp'
 
 // ┌──────────────────────────────────────────────────────────────────┐
 // │  Cambia este número y guarda (Ctrl+S) para navegar entre pasos. │
@@ -22,14 +23,8 @@ import { Paso6Mp } from './paso6_mp'
 // │  4  Paso 4  ScrollView y SafeAreaView                           │
 // │  5  Paso 5  Modal de confirmación                               │
 // │  6  Paso 6  Pantalla completa — detalle de servidor             │
-// │  8  Paso 1 _mp  Props tipadas — inventario de productos         │
-// │  9  Paso 2 _mp  children y composición — detalle de producto    │
-// │ 10  Paso 3 _mp  Props opcionales y BadgeStock                   │
-// │ 11  Paso 4 _mp  ScrollView y SafeAreaView — catálogo            │
-// │ 12  Paso 5 _mp  Modal de confirmación — baja de producto        │
-// │ 13  Paso 6 _mp  Pantalla completa — detalle de producto         │
 // └──────────────────────────────────────────────────────────────────┘
-const PASO = 7
+const PASO = 13
 
 export default function Index() {
   switch (PASO) {
@@ -48,17 +43,19 @@ export default function Index() {
     case 7:
       return <Paso6 />
     case 8:
-      return <Paso1Mp />
+      return <Paso1mp/>
     case 9:
-      return <Paso2Mp />
+      return <Paso2mp/>
     case 10:
-      return <Paso3Mp />
+      return <Paso3mp/>
     case 11:
-      return <Paso4Mp />
+      return <Paso4mp/>
     case 12:
-      return <Paso5Mp />
+      return <Paso5mp/>
     case 13:
-      return <Paso6Mp />
+      return <Paso6mp/>
+      
+      
     default:
       return (
         <View style={styles.centrado}>
